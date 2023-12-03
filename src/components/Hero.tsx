@@ -1,6 +1,11 @@
 import car from "../assets/car.svg";
+import { Link } from "react-router-dom";
 
-function Hero() {
+interface HeroProps {
+  hidden: boolean;
+}
+
+function Hero({ hidden }: HeroProps) {
   return (
     <section className="main-section">
       <div className="container pt-md-5 pt-sm-3">
@@ -14,9 +19,9 @@ function Hero() {
               kualitas terbaik dengan harga terjangkau. Selalu siap melayani
               kebutuhanmu untuk sewa mobil selama 24 jam.
             </p>
-            <a className="btn btn-success mt-4" href="/search">
+            <Link to="/search" className="btn btn-success mt-4" hidden={hidden}>
               Mulai Sewa Mobil
-            </a>
+            </Link>
           </div>
           <div
             className="col-md-6 py-5 d-flex align-items-center justify-content-start"

@@ -13,7 +13,7 @@ function LandingPages() {
     <>
       <Navbar />
       <main>
-        <Hero />
+        <Hero hidden={false} />
         <Services />
         <Whyus />
         <Testimonial />
