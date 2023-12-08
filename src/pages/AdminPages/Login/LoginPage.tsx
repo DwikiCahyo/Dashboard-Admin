@@ -16,7 +16,7 @@ function LoginPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (userInfo.email !== "") {
+    if (userInfo.email !== "" && isSuccess) {
       navigate("/admin/dashboard");
       const Toast = Swal.mixin({
         toast: true,

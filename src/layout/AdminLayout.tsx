@@ -21,8 +21,6 @@ function AdminLayout() {
     role_id: payload?.role_id || 1,
   };
 
-  console.log(userInfo);
-
   useEffect(() => {
     if (userInfo.email === "") setUserInfo(user);
   }, [token]);
