@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search } from "../types/types";
+import { useCar } from "../context/cars/CarProvider";
 
 interface FormState {
   driver: string;
@@ -8,14 +8,7 @@ interface FormState {
   passenger: string;
 }
 
-interface searchProps {
-  onSubmitData: (search: Search) => void;
-  date?: string;
-  time?: string;
-  capacity?: string;
-}
-
-function SearchBar({ onSubmitData, date, time, capacity }: searchProps) {
+function SearchBar() {
   const [form, setForm] = useState<FormState>({
     driver: "",
     date: "",
@@ -23,10 +16,13 @@ function SearchBar({ onSubmitData, date, time, capacity }: searchProps) {
     passenger: "",
   });
 
+  const { fetchCars, setUrlParams } = useCar();
+
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const { driver, date, time, passenger } = form;
-    onSubmitData({ driver, date, time, passenger });
+    fetchCars({ driver, date, time, passenger, isPaginate: "false" });
+    setUrlParams({ date, passenger, time });
   }
 
   function handleInput(
@@ -38,6 +34,11 @@ function SearchBar({ onSubmitData, date, time, capacity }: searchProps) {
       [field]: e.target.value,
     });
   }
+
+  const parameter = new URLSearchParams(location.search);
+  const date = parameter.get("date") || "";
+  const capacity = parameter.get("capacity") || "";
+  const time = parameter.get("time") || "";
 
   const dateValue = date || form.date;
   const capacityValue = capacity || form.passenger;
@@ -74,7 +75,7 @@ function SearchBar({ onSubmitData, date, time, capacity }: searchProps) {
                 className="form-control mt-2"
                 type="date"
                 name="tanggal"
-                value={dateValue}
+                defaultValue={dateValue}
                 onChange={(e) => handleInput(e, "date")}
                 required
               />
@@ -105,7 +106,7 @@ function SearchBar({ onSubmitData, date, time, capacity }: searchProps) {
                 className="form-control mt-2"
                 id="penumpang"
                 placeholder="4 Penumpang"
-                value={capacityValue}
+                defaultValue={capacityValue}
                 onChange={(e) => handleInput(e, "passenger")}
                 required
               />

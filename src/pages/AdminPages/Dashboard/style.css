@@ -1,0 +1,22 @@
+:root {
+  --main-bg-color: rgba(241, 243, 255, 1);
+  --secondary-bg-color: rgba(13, 40, 166, 1);
+  --card-border-color: rgba(208, 208, 208, 1);
+  --button-background-color: #5cb85f;
+  --heading-text-color: rgba(138, 138, 138, 1);
+  --primary-bg-heading: rgba(207, 212, 237, 1);
+  --primary-bg-color: rgba(13, 40, 166, 1);
+}
+#heading-title {
+  color: var(--heading-text-color);
+}
+
+#heading-sub {
+  background-color: var(--primary-bg-heading);
+}
+
+.bg-subtitle {
+  width: 4px;
+  height: 30px;
+  background-color: var(--primary-bg-color);
+}
