@@ -7,12 +7,14 @@ interface CarState {
   pagesTotal: number;
   page: number;
   pageSize: number;
+  isSuccessDelete: boolean;
+  imageUrl: string;
   fetchCars: (search?: Search) => void;
   setPages: (page: number) => void;
   setPageSize: (size: number) => void;
   deleteCars: (id: string, token: string) => void;
-  isSuccessDelete: boolean;
   setSuccessDelete: (value: boolean) => void;
+  setImageUrl: (url: string) => void;
 }
 
 export const useCarStore = create<CarState>()((set) => ({
@@ -21,6 +23,7 @@ export const useCarStore = create<CarState>()((set) => ({
   page: 1,
   pageSize: 10,
   isSuccessDelete: false,
+  imageUrl: "",
   fetchCars: async (search?: Search) => {
     try {
       const response = await axios.get<ResponseCar>(
@@ -76,6 +79,11 @@ export const useCarStore = create<CarState>()((set) => ({
   setSuccessDelete: (value: boolean) => {
     set(() => ({
       isSuccessDelete: value,
+    }));
+  },
+  setImageUrl: (url: string) => {
+    set(() => ({
+      imageUrl: url,
     }));
   },
 }));
