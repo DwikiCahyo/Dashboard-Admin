@@ -31,7 +31,7 @@ export interface Car {
   availableAt: Date;
   available: boolean;
   year: number;
-  option: string;
+  options: string;
   specs: string;
   created_by: string;
   updated_by: string;
@@ -44,6 +44,12 @@ export interface ResponseCar {
   page: number;
   totalPages: number;
   data: Car[];
+}
+
+export interface ResponsePostCar {
+  status: number;
+  message: string;
+  data: Omit<Car, "id">;
 }
 
 export interface ValidationError {

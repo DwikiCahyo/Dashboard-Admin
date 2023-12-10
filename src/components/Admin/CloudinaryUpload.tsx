@@ -39,9 +39,8 @@ function CloudinaryUpload() {
   return (
     <div>
       <Form.Control type="file" accept="image/*" onChange={handleUpload} />
-      {isLoading ? (
-        <Form.Text className="mt-2">Uploading...</Form.Text>
-      ) : (
+      {isLoading && <Form.Text className="mt-2">Uploading...</Form.Text>}
+      {isLoading === false && (
         <Form.Text className="mt-2" style={{ color: "green" }}>
           Success Upload
         </Form.Text>

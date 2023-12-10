@@ -4,26 +4,29 @@ import axios, { AxiosError } from "axios";
 
 interface CarState {
   cars: Car[];
+  car: Car | null;
   pagesTotal: number;
   page: number;
   pageSize: number;
   isSuccessDelete: boolean;
-  imageUrl: string;
+  isSuccessPost: boolean;
   fetchCars: (search?: Search) => void;
+  fetchCar: (id: string | undefined, token: string) => void;
   setPages: (page: number) => void;
   setPageSize: (size: number) => void;
   deleteCars: (id: string, token: string) => void;
   setSuccessDelete: (value: boolean) => void;
-  setImageUrl: (url: string) => void;
+  setSuccessPost: (value: boolean) => void;
 }
 
 export const useCarStore = create<CarState>()((set) => ({
   cars: [],
+  car: null,
   pagesTotal: 0,
   page: 1,
   pageSize: 10,
   isSuccessDelete: false,
-  imageUrl: "",
+  isSuccessPost: false,
   fetchCars: async (search?: Search) => {
     try {
       const response = await axios.get<ResponseCar>(
@@ -50,6 +53,20 @@ export const useCarStore = create<CarState>()((set) => ({
         console.log(error.message);
       } else {
         console.log(error);
+      }
+    }
+  },
+  fetchCar: async (id: string | undefined, token: string) => {
+    try {
+      const response = await axios.get(`http://localhost:3000/cars/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      set(() => ({
+        car: response.data.data,
+      }));
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        console.log(error.response?.data.message);
       }
     }
   },
@@ -81,9 +98,9 @@ export const useCarStore = create<CarState>()((set) => ({
       isSuccessDelete: value,
     }));
   },
-  setImageUrl: (url: string) => {
+  setSuccessPost: (value: boolean) => {
     set(() => ({
-      imageUrl: url,
+      isSuccessPost: value,
     }));
   },
 }));

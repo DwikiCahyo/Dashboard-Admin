@@ -8,13 +8,15 @@ function ListCarPage() {
   const cars = useCarStore((state) => state.cars);
   const fetchCars = useCarStore((state) => state.fetchCars);
   const isSuccesDelete = useCarStore((state) => state.isSuccessDelete);
+  const isSuccessPost = useCarStore((state) => state.isSuccessPost);
   const location = useLocation()
     .pathname.split("/")
     .filter((name) => name !== "");
 
   useEffect(() => {
     fetchCars({ isPaginate: "false" });
-  }, [isSuccesDelete]);
+    console.log("Fetched");
+  }, [isSuccesDelete, isSuccessPost]);
 
   return (
     <div>

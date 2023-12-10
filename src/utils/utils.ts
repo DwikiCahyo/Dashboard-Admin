@@ -1,8 +1,8 @@
 import { jwtDecode } from "jwt-decode";
 import { CustomJwtPayload, User } from "../types/types";
 
-export function convertDate(date: Date) {
-  const formatedDate = date.toString().split("T")[0];
+export function convertDate(date?: Date) {
+  const formatedDate = date?.toString().split("T")[0];
   return formatedDate;
 }
 
