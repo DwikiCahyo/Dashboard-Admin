@@ -9,6 +9,7 @@ function LoginPage() {
   const isErrorr = useAuthStore((state) => state.isError);
   const isSuccess = useAuthStore((state) => state.isSuccess);
   const userInfo = useAuthStore((state) => state.userInfo);
+  const setLogin = useAuthStore((state) => state.setLogin);
   const removeToken = useAuthStore((state) => state.removeToken);
 
   const role = userInfo.role_id;

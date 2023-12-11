@@ -1,15 +1,16 @@
 import { create } from "zustand";
 import { User } from "../types/types";
-import { useNavigate } from "react-router-dom";
 
 interface AuthState {
+  isLogin: boolean;
+  setLogin: () => void;
   userInfo: User;
   token: string | null;
   setToken: (token: string) => void;
   removeToken: () => void;
   isSuccess: boolean;
   isError: string;
-  setSuccess: () => void;
+  setSuccess: (value: boolean) => void;
   setError: (mssg: string) => void;
   setUserInfo: (user: User) => void;
   role: number;
@@ -23,6 +24,7 @@ const initUserInfo: User = {
 };
 
 export const useAuthStore = create<AuthState>()((set) => ({
+  isLogin: false,
   userInfo: initUserInfo,
   token: localStorage.getItem("user") || null,
   role: 0,
@@ -31,13 +33,15 @@ export const useAuthStore = create<AuthState>()((set) => ({
     set(() => ({ token: token }));
   },
   removeToken: () => {
-    localStorage.removeItem("user");
-    set(() => ({ token: null }));
+    set(() => ({ isLogin: false, token: null }));
+  },
+  setLogin: () => {
+    set(() => ({ isLogin: true }));
   },
   isSuccess: false,
   isError: "",
-  setSuccess: () => {
-    set(() => ({ isSuccess: true }));
+  setSuccess: (value: boolean) => {
+    set(() => ({ isSuccess: value }));
   },
   setError: (message: string) => {
     set(() => ({ isError: message }));

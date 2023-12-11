@@ -1,4 +1,4 @@
-import { NavLink, Navigate, Outlet, useNavigate, Link } from "react-router-dom";
+import { NavLink, Navigate, Outlet, useNavigate } from "react-router-dom";
 import "./styles.css";
 import { useAuthStore } from "../store/authStore";
 import { useEffect, useState } from "react";
@@ -11,9 +11,11 @@ function AdminLayout() {
   const setUserInfo = useAuthStore((state) => state.setUserInfo);
   const removeToken = useAuthStore((state) => state.removeToken);
   const navigate = useNavigate();
+  const isSuccess = useAuthStore((state) => state.isSuccess);
+  const setSuccess = useAuthStore((state) => state.setSuccess);
   let payload;
 
-  console.log(token);
+  console.log(isSuccess);
 
   if (token !== null) {
     payload = getRoleJwt(token);
@@ -26,8 +28,17 @@ function AdminLayout() {
   };
 
   useEffect(() => {
-    if (userInfo.email === "" && token) setUserInfo(user);
+    if (userInfo.email === "") {
+      setUserInfo(user);
+    }
   }, [token]);
+
+  function handleLogout() {
+    localStorage.removeItem("user");
+    setSuccess(false);
+    removeToken();
+    navigate("/login");
+  }
 
   return (
     <div className="d-flex" id="wrapper">
@@ -89,7 +100,7 @@ function AdminLayout() {
                       <ul className="dropdown-menu">
                         <button
                           className="dropdown-item"
-                          onClick={() => console.log("logout")}
+                          onClick={handleLogout}
                         >
                           Logout
                         </button>
@@ -131,13 +142,7 @@ function AdminLayout() {
         </nav>
         {/* <!-- Page content--> */}
         <div className="vh-100">
-          {token ? (
-            <Outlet />
-          ) : (
-            <>
-              <Navigate to="/login" />
-            </>
-          )}
+          {token ? <Outlet /> : <Navigate to="/login" />}
         </div>
       </div>
     </div>

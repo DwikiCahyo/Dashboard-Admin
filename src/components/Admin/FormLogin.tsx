@@ -11,6 +11,7 @@ function FormLogin() {
   const setToken = useAuthStore((state) => state.setToken);
   const setSuccess = useAuthStore((state) => state.setSuccess);
   const setError = useAuthStore((state) => state.setError);
+  const setLogin = useAuthStore((state) => state.setLogin);
   const setUserInfo = useAuthStore((state) => state.setUserInfo);
 
   async function handleLogin(e: React.FormEvent) {
@@ -32,7 +33,8 @@ function FormLogin() {
       setUserInfo(user);
 
       setToken(response.data.data.token);
-      setSuccess();
+      setLogin();
+      setSuccess(true);
     } catch (error) {
       if (error instanceof AxiosError) {
         console.log(error.response?.data.message);
