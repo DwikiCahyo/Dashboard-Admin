@@ -10,6 +10,7 @@ interface CarState {
   pageSize: number;
   isSuccessDelete: boolean;
   isSuccessPost: boolean;
+  isAvailable: string;
   fetchCars: (search?: Search) => void;
   fetchCar: (id: string | undefined, token: string) => void;
   setPages: (page: number) => void;
@@ -17,11 +18,13 @@ interface CarState {
   deleteCars: (id: string, token: string) => void;
   setSuccessDelete: (value: boolean) => void;
   setSuccessPost: (value: boolean) => void;
+  setAvailable: (availbale: string) => void;
 }
 
 export const useCarStore = create<CarState>()((set) => ({
   cars: [],
   car: null,
+  isAvailable: "",
   pagesTotal: 0,
   page: 1,
   pageSize: 10,
@@ -101,6 +104,11 @@ export const useCarStore = create<CarState>()((set) => ({
   setSuccessPost: (value: boolean) => {
     set(() => ({
       isSuccessPost: value,
+    }));
+  },
+  setAvailable: (value: string) => {
+    set(() => ({
+      isAvailable: value,
     }));
   },
 }));

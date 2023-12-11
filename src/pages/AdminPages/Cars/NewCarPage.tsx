@@ -7,6 +7,7 @@ import { ResponsePostCar } from "../../../types/types";
 import { useAuthStore } from "../../../store/authStore";
 import { useCarStore } from "../../../store/carStore";
 import Swal from "sweetalert2";
+import { toastNavigate } from "../../../utils/alert";
 
 interface NewCarState {
   plate: string;
@@ -267,10 +268,10 @@ function NewCar() {
               <option disabled value="default" hidden>
                 Transmission
               </option>
-              <option value="automatic">Automatic</option>
-              <option value="false">Manual</option>
-              <option value="false">CVT</option>
-              <option value="false">Automanual</option>
+              <option value="Automatic">Automatic</option>
+              <option value="Manual">Manual</option>
+              <option value="CVT">CVT</option>
+              <option value="Automanual">Automanual</option>
             </select>
           </Form.Group>
           <Form.Group className="mb-3 d-flex align-items-center">

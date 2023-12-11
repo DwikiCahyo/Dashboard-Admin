@@ -86,6 +86,8 @@ function UpdateCarPage() {
     }
   }, [car]);
 
+  console.log(car);
+
   useEffect(() => {
     if (!isLoading && isLoading !== null) {
       const Toast = Swal.mixin({
@@ -285,10 +287,10 @@ function UpdateCarPage() {
                   <option disabled value="default" hidden>
                     Transmission
                   </option>
-                  <option value="automatic">Automatic</option>
-                  <option value="false">Manual</option>
-                  <option value="false">CVT</option>
-                  <option value="false">Automanual</option>
+                  <option value="Automatic">Automatic</option>
+                  <option value="Manual">Manual</option>
+                  <option value="CVT">CVT</option>
+                  <option value="Automanual">Automanual</option>
                 </select>
               </Form.Group>
               <Form.Group className="mb-3 d-flex align-items-center">
@@ -298,7 +300,7 @@ function UpdateCarPage() {
                 <select
                   className="form-select mt-2"
                   id="Available"
-                  value={form.available ? "True" : "False"}
+                  value={form.available ? "true" : "false"}
                   onChange={(e) => handleInput(e, "available")}
                   required
                 >

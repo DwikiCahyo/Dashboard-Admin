@@ -18,3 +18,21 @@ export function loginAlert(role: number, user: string, admin: string) {
     title: "Signed in successfully",
   });
 }
+
+export function toastNavigate(route: string) {
+  const navigate = useNavigate();
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: () => {
+      navigate(route);
+    },
+  });
+  Toast.fire({
+    icon: "success",
+    title: "Success add new car",
+  });
+}

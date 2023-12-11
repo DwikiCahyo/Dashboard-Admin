@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { User } from "../types/types";
+import { useNavigate } from "react-router-dom";
 
 interface AuthState {
   userInfo: User;

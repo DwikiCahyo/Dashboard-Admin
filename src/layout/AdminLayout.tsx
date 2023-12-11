@@ -1,7 +1,7 @@
-import { NavLink, Navigate, Outlet } from "react-router-dom";
+import { NavLink, Navigate, Outlet, useNavigate, Link } from "react-router-dom";
 import "./styles.css";
 import { useAuthStore } from "../store/authStore";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { User } from "../types/types";
 import { getRoleJwt } from "../utils/utils";
 
@@ -9,7 +9,11 @@ function AdminLayout() {
   const token = useAuthStore((state) => state.token);
   const userInfo = useAuthStore((state) => state.userInfo);
   const setUserInfo = useAuthStore((state) => state.setUserInfo);
+  const removeToken = useAuthStore((state) => state.removeToken);
+  const navigate = useNavigate();
   let payload;
+
+  console.log(token);
 
   if (token !== null) {
     payload = getRoleJwt(token);
@@ -22,7 +26,7 @@ function AdminLayout() {
   };
 
   useEffect(() => {
-    if (userInfo.email === "") setUserInfo(user);
+    if (userInfo.email === "" && token) setUserInfo(user);
   }, [token]);
 
   return (
@@ -35,18 +39,16 @@ function AdminLayout() {
             className="list-group-item list-group-item-action "
             to="dashboard"
           >
-            <div className="d-flex flex-column align-items-center">
-              <p>Image</p>
-              <p>Dashboard</p>
+            <div className="d-flex flex-column align-items-center p-3">
+              <p className="fw-bold">Dashboard</p>
             </div>
           </NavLink>
           <NavLink
             className="list-group-item list-group-item-action "
             to="cars"
           >
-            <div className="d-flex flex-column align-items-center">
-              <p>Image</p>
-              <p>Cars</p>
+            <div className="d-flex flex-column align-items-center p-3">
+              <p className="fw-bold">Cars</p>
             </div>
           </NavLink>
         </div>
@@ -73,11 +75,27 @@ function AdminLayout() {
               id="navbarSupportedContent"
             >
               <div className="navbar-nav ms-auto mt-4 mt-lg-4 ">
-                <div className="nav-item active">
-                  <p>Search</p>
-                </div>
                 <div className="nav-item">
-                  {token && <p>{userInfo.email}</p>}
+                  {token && (
+                    <div className="dropdown">
+                      <button
+                        className="btn btn-secondary dropdown-toggle"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        {userInfo.email}
+                      </button>
+                      <ul className="dropdown-menu">
+                        <button
+                          className="dropdown-item"
+                          onClick={() => console.log("logout")}
+                        >
+                          Logout
+                        </button>
+                      </ul>
+                    </div>
+                  )}
                 </div>
                 {/* <li className="nav-item dropdown">
                   <a

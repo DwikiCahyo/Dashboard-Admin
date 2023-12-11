@@ -3,20 +3,22 @@ import { NavLink, useLocation } from "react-router-dom";
 import CardCars from "../../../components/Admin/CardCars";
 import { useCarStore } from "../../../store/carStore";
 import { useEffect } from "react";
+import FilterAvailable from "../../../components/Admin/FilterCarsAvailable";
 
 function ListCarPage() {
   const cars = useCarStore((state) => state.cars);
   const fetchCars = useCarStore((state) => state.fetchCars);
   const isSuccesDelete = useCarStore((state) => state.isSuccessDelete);
   const isSuccessPost = useCarStore((state) => state.isSuccessPost);
+  const isAvailable = useCarStore((state) => state.isAvailable);
   const location = useLocation()
     .pathname.split("/")
     .filter((name) => name !== "");
 
   useEffect(() => {
-    fetchCars({ isPaginate: "false" });
-    console.log("Fetched");
-  }, [isSuccesDelete, isSuccessPost]);
+    fetchCars({ isPaginate: "false", available: isAvailable });
+    console.log(cars);
+  }, [isSuccesDelete, isSuccessPost, isAvailable]);
 
   return (
     <div>
@@ -28,6 +30,7 @@ function ListCarPage() {
             + Add New Car
           </NavLink>
         </div>
+        <FilterAvailable />
         <div className="mt-4 ">
           <div className="row">
             {cars.map((car) => (
