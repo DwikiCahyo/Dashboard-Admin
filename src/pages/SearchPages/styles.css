@@ -1,9 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 * {
   margin: 0;
   padding: 0;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 :root {
@@ -83,8 +83,8 @@ ul {
 }
 
 .item-list:before {
-  content: "";
-  background-image: url("https://i.ibb.co/DwWFsZQ/icon-list.png");
+  content: '';
+  background-image: url('https://i.ibb.co/DwWFsZQ/icon-list.png');
   background-size: 24px 24px;
   width: 24px;
   height: 24px;

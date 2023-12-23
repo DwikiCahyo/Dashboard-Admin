@@ -1,11 +1,11 @@
-import Hero from "../../components/Hero";
-import Navbar from "../../components/Navbar";
-import SearchBar from "../../components/SearchBar";
-import "./styles.css";
-import Card from "../../components/cars/Card";
-import { CarProvider } from "../../context/cars/CarProvider";
-import ListTitle from "../../components/cars/ListTitle";
-import PaginationComponent from "../../components/cars/PaginationComponent";
+import Hero from '../../components/Hero';
+import Navbar from '../../components/Navbar';
+import SearchBar from '../../components/SearchBar';
+import './styles.css';
+import Card from '../../components/cars/Card';
+import { CarProvider } from '../../context/cars/CarProvider';
+import ListTitle from '../../components/cars/ListTitle';
+import PaginationComponent from '../../components/cars/PaginationComponent';
 
 function SearchPage() {
   return (

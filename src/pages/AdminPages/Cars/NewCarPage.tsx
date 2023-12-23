@@ -1,15 +1,15 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import Breadcrumbs from "../../../components/Admin/Breadcrumbs";
-import { Form, Alert } from "react-bootstrap";
-import React, { useEffect, useState } from "react";
-import { AxiosError } from "axios";
-import { ResponsePostCar } from "../../../types/types";
-import { useAuthStore } from "../../../store/authStore";
-import { useCarStore } from "../../../store/carStore";
-import Swal from "sweetalert2";
-import { apiInstance } from "../../../utils/utils";
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import Breadcrumbs from '../../../components/Admin/Breadcrumbs';
+import { Form, Alert } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { AxiosError } from 'axios';
+import { ResponsePostCar } from '../../../types/types';
+import { useAuthStore } from '../../../store/authStore';
+import { useCarStore } from '../../../store/carStore';
+import Swal from 'sweetalert2';
+import { apiInstance } from '../../../utils/utils';
 
 interface NewCarState {
   plate: string;
@@ -29,8 +29,8 @@ interface NewCarState {
 
 function NewCar() {
   const location = useLocation()
-    .pathname.split("/")
-    .filter((name) => name !== "");
+    .pathname.split('/')
+    .filter((name) => name !== '');
   const token = useAuthStore((state) => state.token);
   const [file, setFile] = useState<File | undefined>();
   const [isLoading, setLoading] = useState<boolean | null>(null);
@@ -41,42 +41,42 @@ function NewCar() {
     if (!isLoading && isLoading !== null) {
       const Toast = Swal.mixin({
         toast: true,
-        position: "top-end",
+        position: 'top-end',
         showConfirmButton: false,
         timer: 3000,
         timerProgressBar: true,
         didOpen: () => {
-          navigate("/admin/cars");
+          navigate('/admin/cars');
         },
       });
       Toast.fire({
-        icon: "success",
-        title: "Success add new car",
+        icon: 'success',
+        title: 'Success add new car',
       });
     }
   }, [isLoading]);
 
   const [form, setForm] = useState<NewCarState>({
-    plate: "",
-    manufacture: "",
-    model: "",
+    plate: '',
+    manufacture: '',
+    model: '',
     rentPerDay: 0,
     capacity: 0,
-    description: "",
-    availableAt: "",
-    transmission: "",
+    description: '',
+    availableAt: '',
+    transmission: '',
     available: true,
-    type: "",
+    type: '',
     year: 0,
-    options: "",
-    specs: "",
+    options: '',
+    specs: '',
   });
 
   function handleInput(
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
     >,
-    field: keyof NewCarState
+    field: keyof NewCarState,
   ) {
     setForm({
       ...form,
@@ -86,7 +86,7 @@ function NewCar() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    console.log("Clicked");
+    console.log('Clicked');
     setLoading(true);
     const {
       plate,
@@ -107,7 +107,7 @@ function NewCar() {
 
     try {
       const response = await apiInstance.post<ResponsePostCar>(
-        "cars",
+        'cars',
         {
           plate: plate,
           manufacture: manufacture,
@@ -127,9 +127,9 @@ function NewCar() {
         {
           headers: {
             Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
+            'Content-Type': 'multipart/form-data',
           },
-        }
+        },
       );
       console.log(response);
 
@@ -137,7 +137,7 @@ function NewCar() {
         setLoading(false);
         setSuccessPost(true);
         const navigate = useNavigate();
-        navigate("/admin/cars");
+        navigate('/admin/cars');
       }
     } catch (error) {
       if (error instanceof AxiosError) {
@@ -157,42 +157,42 @@ function NewCar() {
       <h3 className="fw-bold mt-4">Add New Car</h3>
       <div
         className=" bg-white mt-4"
-        style={{ width: "100%", padding: "50px 50% 50px 50px" }}
+        style={{ width: '100%', padding: '50px 50% 50px 50px' }}
       >
         <Form onSubmit={handleSubmit} validated>
           <Form.Group className="mb-3 d-flex align-items-center">
-            <Form.Label style={{ width: "200px", marginTop: "16px" }}>
+            <Form.Label style={{ width: '200px', marginTop: '16px' }}>
               Plate
             </Form.Label>
             <input
               type="text"
               placeholder="Plate"
               className="form-control mt-2"
-              onChange={(e) => handleInput(e, "plate")}
+              onChange={(e) => handleInput(e, 'plate')}
               required
             />
           </Form.Group>
           <Form.Group className="mb-3 d-flex align-items-center">
-            <Form.Label style={{ width: "200px", marginTop: "16px" }}>
+            <Form.Label style={{ width: '200px', marginTop: '16px' }}>
               Manufacture
             </Form.Label>
             <input
               className="form-control mt-2"
               type="text"
               placeholder="Manufacture"
-              onChange={(e) => handleInput(e, "manufacture")}
+              onChange={(e) => handleInput(e, 'manufacture')}
               required
             />
           </Form.Group>
           <Form.Group className="mb-3 d-flex align-items-center">
-            <Form.Label style={{ width: "200px", marginTop: "16px" }}>
+            <Form.Label style={{ width: '200px', marginTop: '16px' }}>
               Model
             </Form.Label>
             <input
               className="form-control mt-2"
               type="text"
               placeholder="Model"
-              onChange={(e) => handleInput(e, "model")}
+              onChange={(e) => handleInput(e, 'model')}
               required
             />
           </Form.Group>
@@ -200,7 +200,7 @@ function NewCar() {
             controlId="formFile"
             className="mb-3 d-flex align-items-center"
           >
-            <Form.Label style={{ width: "200px", marginTop: "16px" }}>
+            <Form.Label style={{ width: '200px', marginTop: '16px' }}>
               Image
             </Form.Label>
             <input
@@ -211,60 +211,60 @@ function NewCar() {
             />
           </Form.Group>
           <Form.Group className="mb-3 d-flex align-items-center">
-            <Form.Label style={{ width: "200px", marginTop: "16px" }}>
+            <Form.Label style={{ width: '200px', marginTop: '16px' }}>
               Rent Per Day
             </Form.Label>
             <input
               className="form-control mt-2"
               type="number"
               placeholder="rent per day"
-              onChange={(e) => handleInput(e, "rentPerDay")}
+              onChange={(e) => handleInput(e, 'rentPerDay')}
               required
             />
           </Form.Group>
           <Form.Group className="mb-3 d-flex align-items-center">
-            <Form.Label style={{ width: "200px", marginTop: "16px" }}>
+            <Form.Label style={{ width: '200px', marginTop: '16px' }}>
               Capacity
             </Form.Label>
             <input
               className="form-control mt-2"
               type="number"
               placeholder="capacity"
-              onChange={(e) => handleInput(e, "capacity")}
+              onChange={(e) => handleInput(e, 'capacity')}
               required
             />
           </Form.Group>
           <Form.Group className="mb-3 d-flex align-items-center">
-            <Form.Label style={{ width: "200px", marginTop: "16px" }}>
+            <Form.Label style={{ width: '200px', marginTop: '16px' }}>
               Description
             </Form.Label>
             <textarea
               className="form-control mt-2"
               placeholder="Description"
-              onChange={(e) => handleInput(e, "description")}
+              onChange={(e) => handleInput(e, 'description')}
               required
             />
           </Form.Group>
           <Form.Group className="mb-3 d-flex align-items-center">
-            <Form.Label style={{ width: "200px", marginTop: "16px" }}>
+            <Form.Label style={{ width: '200px', marginTop: '16px' }}>
               Available At
             </Form.Label>
             <input
               className="form-control mt-2"
               type="text"
               placeholder="Available at"
-              onChange={(e) => handleInput(e, "availableAt")}
+              onChange={(e) => handleInput(e, 'availableAt')}
               required
             />
           </Form.Group>
           <Form.Group className="mb-3 d-flex align-items-center">
-            <Form.Label style={{ width: "200px", marginTop: "16px" }}>
+            <Form.Label style={{ width: '200px', marginTop: '16px' }}>
               Transmission
             </Form.Label>
             <select
               className="form-select mt-2"
               id="Available"
-              onChange={(e) => handleInput(e, "transmission")}
+              onChange={(e) => handleInput(e, 'transmission')}
               required
             >
               <option disabled value="default" hidden>
@@ -277,13 +277,13 @@ function NewCar() {
             </select>
           </Form.Group>
           <Form.Group className="mb-3 d-flex align-items-center">
-            <Form.Label style={{ width: "200px", marginTop: "16px" }}>
+            <Form.Label style={{ width: '200px', marginTop: '16px' }}>
               Available
             </Form.Label>
             <select
               className="form-select mt-2"
               id="Available"
-              onChange={(e) => handleInput(e, "available")}
+              onChange={(e) => handleInput(e, 'available')}
               required
             >
               <option disabled value="default" hidden>
@@ -294,50 +294,50 @@ function NewCar() {
             </select>
           </Form.Group>
           <Form.Group className="mb-3 d-flex align-items-center">
-            <Form.Label style={{ width: "200px", marginTop: "16px" }}>
+            <Form.Label style={{ width: '200px', marginTop: '16px' }}>
               Type
             </Form.Label>
             <input
               className="form-control mt-2"
               type="text"
               placeholder="Type"
-              onChange={(e) => handleInput(e, "type")}
+              onChange={(e) => handleInput(e, 'type')}
               required
             />
           </Form.Group>
           <Form.Group className="mb-3 d-flex align-items-center">
-            <Form.Label style={{ width: "200px", marginTop: "16px" }}>
+            <Form.Label style={{ width: '200px', marginTop: '16px' }}>
               Year
             </Form.Label>
             <input
               className="form-control mt-2"
               type="number"
               placeholder="Year"
-              onChange={(e) => handleInput(e, "year")}
+              onChange={(e) => handleInput(e, 'year')}
               required
             />
           </Form.Group>
           <Form.Group className="mb-3 d-flex align-items-center">
-            <Form.Label style={{ width: "200px", marginTop: "16px" }}>
+            <Form.Label style={{ width: '200px', marginTop: '16px' }}>
               Options
             </Form.Label>
             <input
               className="form-control mt-2"
               type="text"
               placeholder="Options"
-              onChange={(e) => handleInput(e, "options")}
+              onChange={(e) => handleInput(e, 'options')}
               required
             />
           </Form.Group>
           <Form.Group className="mb-3 d-flex align-items-center">
-            <Form.Label style={{ width: "200px", marginTop: "16px" }}>
+            <Form.Label style={{ width: '200px', marginTop: '16px' }}>
               Specs
             </Form.Label>
             <input
               className="form-control mt-2"
               type="text"
               placeholder="Specs"
-              onChange={(e) => handleInput(e, "specs")}
+              onChange={(e) => handleInput(e, 'specs')}
               required
             />
           </Form.Group>

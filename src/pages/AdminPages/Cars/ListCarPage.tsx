@@ -1,20 +1,21 @@
-import Breadcrumbs from "../../../components/Admin/Breadcrumbs";
-import { NavLink, useLocation } from "react-router-dom";
-import CardCars from "../../../components/Admin/CardCars";
-import { useCarStore } from "../../../store/carStore";
-import { useEffect } from "react";
-import FilterAvailable from "../../../components/Admin/FilterCarsAvailable";
+import Breadcrumbs from '../../../components/Admin/Breadcrumbs';
+import { NavLink, useLocation } from 'react-router-dom';
+import CardCars from '../../../components/Admin/CardCars';
+import { useCarStore } from '../../../store/carStore';
+import { useEffect } from 'react';
+import FilterAvailable from '../../../components/Admin/FilterCarsAvailable';
 
 function ListCarPage() {
   const { cars, fetchCars, isSuccessDelete, isSuccessPost, isAvailable } =
     useCarStore();
 
   const location = useLocation()
-    .pathname.split("/")
-    .filter((name) => name !== "");
+    .pathname.split('/')
+    .filter((name) => name !== '');
 
   useEffect(() => {
-    fetchCars({ isPaginate: "false", available: isAvailable });
+    fetchCars({ isPaginate: 'false', available: isAvailable });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSuccessDelete, isSuccessPost, isAvailable]);
 
   return (

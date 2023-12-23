@@ -1,7 +1,7 @@
-import { useCar } from "../../context/cars/CarProvider";
-import assetCalendar from "../../assets/fi_calendar.svg";
-import assetSetting from "../../assets/fi_settings.svg";
-import assetUser from "../../assets/fi_users.svg";
+import { useCar } from '../../context/cars/CarProvider';
+import assetCalendar from '../../assets/fi_calendar.svg';
+import assetSetting from '../../assets/fi_settings.svg';
+import assetUser from '../../assets/fi_users.svg';
 
 function Card() {
   const { cars } = useCar();
@@ -12,7 +12,7 @@ function Card() {
         cars.map((car) => (
           <div className="col" key={car.id}>
             <div className="col">
-              <div className="card" style={{ minHeight: "500px" }}>
+              <div className="card" style={{ minHeight: '500px' }}>
                 <img
                   src={car.image}
                   alt={car.plate}

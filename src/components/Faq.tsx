@@ -4,10 +4,10 @@ function Faq() {
       <div className="container">
         <div className="row">
           <div className="col-md-5">
-            <h1 className="fw-bold" style={{ fontSize: "24px" }}>
+            <h1 className="fw-bold" style={{ fontSize: '24px' }}>
               Frequently Asked Question
             </h1>
-            <p style={{ fontSize: "14px", color: "rgba(0, 0, 0, 0.479)" }}>
+            <p style={{ fontSize: '14px', color: 'rgba(0, 0, 0, 0.479)' }}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit
             </p>
           </div>

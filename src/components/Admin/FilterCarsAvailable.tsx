@@ -1,16 +1,16 @@
-import { useCarStore } from "../../store/carStore";
+import { useCarStore } from '../../store/carStore';
 
 function FilterAvailable() {
   const setIsAvailable = useCarStore((state) => state.setAvailable);
   return (
     <>
-      <label style={{ width: "200px", marginTop: "16px" }}>
+      <label style={{ width: '200px', marginTop: '16px' }}>
         Car Availability
       </label>
       <select
         className="form-select mt-3"
         id="Available"
-        style={{ width: "auto" }}
+        style={{ width: 'auto' }}
         defaultValue="default"
         onChange={(e) => setIsAvailable(e.target.value)}
         required

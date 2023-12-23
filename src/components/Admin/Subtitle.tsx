@@ -1,4 +1,4 @@
-import "../../pages/AdminPages/Dashboard/style.css";
+import '../../pages/AdminPages/Dashboard/style.css';
 
 interface SubtitleProps {
   subtitle: string;

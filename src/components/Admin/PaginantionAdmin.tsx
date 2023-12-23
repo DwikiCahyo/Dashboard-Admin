@@ -1,5 +1,5 @@
-import { Pagination } from "react-bootstrap";
-import { useCarStore } from "../../store/carStore";
+import { Pagination } from 'react-bootstrap';
+import { useCarStore } from '../../store/carStore';
 
 interface PaginationAdmin {
   page: number;
@@ -18,7 +18,7 @@ function PaginationAdmin({ totalPages, page }: PaginationAdmin) {
         onClick={() => setPage(number)}
       >
         {number}
-      </Pagination.Item>
+      </Pagination.Item>,
     );
   }
   return (

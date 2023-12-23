@@ -28,7 +28,7 @@ function Testimonial() {
                         alt=""
                         className="rounded-circle"
                         id="img-profile"
-                        style={{ objectFit: "cover" }}
+                        style={{ objectFit: 'cover' }}
                       />
                     </div>
                     <div className="col-md-8 mt-4 mt-md-0 d-flex d-md-block flex-column">
@@ -83,7 +83,7 @@ function Testimonial() {
                         alt=""
                         className="rounded-circle"
                         id="img-profile"
-                        style={{ objectFit: "cover" }}
+                        style={{ objectFit: 'cover' }}
                       />
                     </div>
                     <div className="col-md-8 mt-4 mt-md-0 d-flex d-md-block flex-column">
@@ -138,7 +138,7 @@ function Testimonial() {
                         alt=""
                         className="rounded-circle"
                         id="img-profile"
-                        style={{ objectFit: "cover" }}
+                        style={{ objectFit: 'cover' }}
                       />
                     </div>
                     <div className="col-md-8 mt-4 mt-md-0 d-flex d-md-block flex-column">

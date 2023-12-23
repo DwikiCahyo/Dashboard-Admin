@@ -1,4 +1,4 @@
-import { JwtPayload } from "jwt-decode";
+import { JwtPayload } from 'jwt-decode';
 
 export interface Search {
   available?: string;
@@ -49,7 +49,7 @@ export interface ResponseCar {
 export interface ResponsePostCar {
   status: number;
   message: string;
-  data: Omit<Car, "id">;
+  data: Omit<Car, 'id'>;
 }
 
 export interface ValidationError {

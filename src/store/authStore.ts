@@ -1,5 +1,5 @@
-import { create } from "zustand";
-import { User } from "../types/types";
+import { create } from 'zustand';
+import { User } from '../types/types';
 
 interface AuthState {
   isLogin: boolean;
@@ -18,7 +18,7 @@ interface AuthState {
 }
 
 const initUserInfo: User = {
-  email: "",
+  email: '',
   id: 0,
   role_id: 0,
 };
@@ -26,10 +26,10 @@ const initUserInfo: User = {
 export const useAuthStore = create<AuthState>()((set) => ({
   isLogin: false,
   userInfo: initUserInfo,
-  token: localStorage.getItem("user") || null,
+  token: localStorage.getItem('user') || null,
   role: 0,
   setToken: (token: string) => {
-    localStorage.setItem("user", token);
+    localStorage.setItem('user', token);
     set(() => ({ token: token }));
   },
   removeToken: () => {
@@ -39,7 +39,7 @@ export const useAuthStore = create<AuthState>()((set) => ({
     set(() => ({ isLogin: true }));
   },
   isSuccess: false,
-  isError: "",
+  isError: '',
   setSuccess: (value: boolean) => {
     set(() => ({ isSuccess: value }));
   },

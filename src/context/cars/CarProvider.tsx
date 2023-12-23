@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { createContext, useContext, useState, useEffect } from "react";
-import { Car, Search, SearchParams } from "../../types/types";
-import axios from "axios";
-import { useNavigate, useLocation } from "react-router-dom";
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import { Car, Search, SearchParams } from '../../types/types';
+import axios from 'axios';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 type CarContextProps = {
   cars: Car[];
@@ -18,10 +18,11 @@ type CarProviderProps = {
 
 export const CarContext = createContext<CarContextProps | undefined>(undefined);
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useCar() {
   const context = useContext(CarContext);
   if (context === undefined) {
-    throw new Error("useCar must be used within a CarProvider");
+    throw new Error('useCar must be used within a CarProvider');
   }
   return context;
 }
@@ -36,9 +37,9 @@ export function CarProvider({ children }: CarProviderProps) {
 
   function setUrlParams(param: SearchParams) {
     const params = new URLSearchParams();
-    params.set("date", param.date);
-    params.set("capacity", param.passenger);
-    params.set("time", param.time);
+    params.set('date', param.date);
+    params.set('capacity', param.passenger);
+    params.set('time', param.time);
 
     navigate({
       pathname: location.pathname,
@@ -47,14 +48,14 @@ export function CarProvider({ children }: CarProviderProps) {
   }
 
   const parameter = new URLSearchParams(location.search);
-  const date = parameter.get("date") || "";
-  const capacity = parameter.get("capacity") || "";
-  const time = parameter.get("time") || "";
+  const date = parameter.get('date') || '';
+  const capacity = parameter.get('capacity') || '';
+  const time = parameter.get('time') || '';
 
   async function fetchCars(search?: Search) {
     // eslint-disable-next-line no-useless-catch
     try {
-      const data = await axios.get("http://localhost:3000/cars", {
+      const data = await axios.get('http://localhost:3000/cars', {
         params: {
           capacity: search?.passenger || capacity,
           date: search?.date || date,
@@ -80,7 +81,7 @@ export function CarProvider({ children }: CarProviderProps) {
 
   useEffect(() => {
     fetchCars();
-    console.log("fetching");
+    console.log('fetching');
   }, []);
 
   const CarContextValue: CarContextProps = {

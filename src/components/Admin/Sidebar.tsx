@@ -4,7 +4,7 @@ interface SidebarProps {
 
 function Sidebar({ title }: SidebarProps) {
   return (
-    <div className="col-12 col-md-2 bg-white" style={{ padding: "0px" }}>
+    <div className="col-12 col-md-2 bg-white" style={{ padding: '0px' }}>
       <h5 className="mt-5 px-4 fw-normal text-uppercase" id="heading-title">
         {title}
       </h5>

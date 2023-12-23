@@ -1,15 +1,15 @@
-import "./style.css";
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import Sidebar from "../../../components/Admin/Sidebar";
-import Breadcrumbs from "../../../components/Admin/Breadcrumbs";
-import Subtitle from "../../../components/Admin/Subtitle";
-import { useCarStore } from "../../../store/carStore";
-import { convertDate, convertTime, formatToIDR } from "../../../utils/utils";
-import PageCount from "../../../components/Admin/PageCount";
-import JumpPage from "../../../components/Admin/JumpPage";
-import PaginationAdmin from "../../../components/Admin/PaginantionAdmin";
-import LimitPage from "../../../components/Admin/LimitPage";
+import './style.css';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import Sidebar from '../../../components/Admin/Sidebar';
+import Breadcrumbs from '../../../components/Admin/Breadcrumbs';
+import Subtitle from '../../../components/Admin/Subtitle';
+import { useCarStore } from '../../../store/carStore';
+import { convertDate, convertTime, formatToIDR } from '../../../utils/utils';
+import PageCount from '../../../components/Admin/PageCount';
+import JumpPage from '../../../components/Admin/JumpPage';
+import PaginationAdmin from '../../../components/Admin/PaginantionAdmin';
+import LimitPage from '../../../components/Admin/LimitPage';
 
 function AdminPages() {
   const { cars, fetchCars, page, pagesTotal, pageSize } = useCarStore();
@@ -19,18 +19,18 @@ function AdminPages() {
   }, [page, pageSize]);
 
   const location = useLocation()
-    .pathname.split("/")
-    .filter((name) => name !== "");
+    .pathname.split('/')
+    .filter((name) => name !== '');
 
   const configHeadCars = [
-    { label: "No" },
-    { label: "Name" },
-    { label: "Type" },
-    { label: "Price" },
-    { label: "Date Available" },
-    { label: "Time Available" },
-    { label: "Capacity" },
-    { label: "Updated by" },
+    { label: 'No' },
+    { label: 'Name' },
+    { label: 'Type' },
+    { label: 'Price' },
+    { label: 'Date Available' },
+    { label: 'Time Available' },
+    { label: 'Capacity' },
+    { label: 'Updated by' },
   ];
 
   const renderedHeaders = configHeadCars.map((column) => {
@@ -51,7 +51,7 @@ function AdminPages() {
         <td>{convertDate(car.availableAt)}</td>
         <td>{convertTime(car.availableAt)}</td>
         <td>{car.capacity} people</td>
-        <td>{car.updated_by ? car.updated_by : "Not Updated"}</td>
+        <td>{car.updated_by ? car.updated_by : 'Not Updated'}</td>
       </tr>
     );
   });

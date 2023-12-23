@@ -1,20 +1,20 @@
-import { Form } from "react-bootstrap";
-import { useState } from "react";
-import { AxiosError } from "axios";
-import { useAuthStore } from "../../store/authStore";
-import { ResponseUser, User } from "../../types/types";
-import { apiInstance, getRoleJwt } from "../../utils/utils";
+import { Form } from 'react-bootstrap';
+import { useState } from 'react';
+import { AxiosError } from 'axios';
+import { useAuthStore } from '../../store/authStore';
+import { ResponseUser, User } from '../../types/types';
+import { apiInstance, getRoleJwt } from '../../utils/utils';
 
 function FormLogin() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const { setToken, setSuccess, setError, setLogin, setUserInfo } =
     useAuthStore();
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
     try {
-      const response = await apiInstance.post<ResponseUser>("login", {
+      const response = await apiInstance.post<ResponseUser>('login', {
         email,
         password,
       });
@@ -38,7 +38,7 @@ function FormLogin() {
   }
 
   return (
-    <div style={{ marginTop: "32px" }}>
+    <div style={{ marginTop: '32px' }}>
       <Form onSubmit={handleLogin}>
         <Form.Group className="mb-3" controlId="formGroupEmail">
           <Form.Label>Email address</Form.Label>

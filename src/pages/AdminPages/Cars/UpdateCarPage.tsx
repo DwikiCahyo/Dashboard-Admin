@@ -1,13 +1,13 @@
-import Breadcrumbs from "../../../components/Admin/Breadcrumbs";
-import { useLocation, Link, useParams, useNavigate } from "react-router-dom";
-import { Form } from "react-bootstrap";
-import { useCarStore } from "../../../store/carStore";
-import { useEffect, useState } from "react";
-import { useAuthStore } from "../../../store/authStore";
-import { AxiosError } from "axios";
-import { Alert } from "react-bootstrap";
-import Swal from "sweetalert2";
-import { apiInstance } from "../../../utils/utils";
+import Breadcrumbs from '../../../components/Admin/Breadcrumbs';
+import { useLocation, Link, useParams, useNavigate } from 'react-router-dom';
+import { Form } from 'react-bootstrap';
+import { useCarStore } from '../../../store/carStore';
+import { useEffect, useState } from 'react';
+import { useAuthStore } from '../../../store/authStore';
+import { AxiosError } from 'axios';
+import { Alert } from 'react-bootstrap';
+import Swal from 'sweetalert2';
+import { apiInstance } from '../../../utils/utils';
 
 interface UpdateCarState {
   plate: string;
@@ -26,8 +26,8 @@ interface UpdateCarState {
 
 function UpdateCarPage() {
   const location = useLocation()
-    .pathname.split("/")
-    .filter((name) => name !== "");
+    .pathname.split('/')
+    .filter((name) => name !== '');
   const token = useAuthStore((state) => state.token);
   const car = useCarStore((state) => state.car);
   const fetchCar = useCarStore((state) => state.fetchCar);
@@ -36,25 +36,25 @@ function UpdateCarPage() {
   const navigate = useNavigate();
 
   const [form, setForm] = useState<UpdateCarState>({
-    plate: "",
-    manufacture: "",
-    model: "",
+    plate: '',
+    manufacture: '',
+    model: '',
     rentPerDay: 0,
     capacity: 0,
-    description: "",
-    transmission: "",
+    description: '',
+    transmission: '',
     available: true,
-    type: "",
+    type: '',
     year: 0,
-    options: "",
-    specs: "",
+    options: '',
+    specs: '',
   });
 
   function handleInput(
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
     >,
-    field: keyof UpdateCarState
+    field: keyof UpdateCarState,
   ) {
     setForm({
       ...form,
@@ -93,16 +93,16 @@ function UpdateCarPage() {
     if (!isLoading && isLoading !== null) {
       const Toast = Swal.mixin({
         toast: true,
-        position: "top-end",
+        position: 'top-end',
         showConfirmButton: false,
         timer: 3000,
         timerProgressBar: true,
         didOpen: () => {
-          navigate("/admin/cars");
+          navigate('/admin/cars');
         },
       });
       Toast.fire({
-        icon: "success",
+        icon: 'success',
         title: `Success update car with id ${id} `,
       });
     }
@@ -147,9 +147,9 @@ function UpdateCarPage() {
         {
           headers: {
             Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
+            'Content-Type': 'multipart/form-data',
           },
-        }
+        },
       );
 
       console.log(response.status);
@@ -170,7 +170,7 @@ function UpdateCarPage() {
       <h3 className="fw-bold mt-4">Update Car</h3>
       <div
         className=" bg-white mt-4"
-        style={{ width: "100%", padding: "50px 20px " }}
+        style={{ width: '100%', padding: '50px 20px ' }}
       >
         <div className="row align-items-start">
           <div className=" col-6 col-md-5 d-flex flex-column align-items-center">
@@ -186,7 +186,7 @@ function UpdateCarPage() {
           <div className="col-6 col-md-5 col-7 mt-4 w-90">
             <Form onSubmit={handleUpdate} validated>
               <Form.Group className="mb-3 d-flex align-items-center">
-                <Form.Label style={{ width: "200px", marginTop: "16px" }}>
+                <Form.Label style={{ width: '200px', marginTop: '16px' }}>
                   Plate
                 </Form.Label>
                 <input
@@ -194,12 +194,12 @@ function UpdateCarPage() {
                   placeholder="Plate"
                   className="form-control mt-2"
                   value={form.plate}
-                  onChange={(e) => handleInput(e, "plate")}
+                  onChange={(e) => handleInput(e, 'plate')}
                   required
                 />
               </Form.Group>
               <Form.Group className="mb-3 d-flex align-items-center">
-                <Form.Label style={{ width: "200px", marginTop: "16px" }}>
+                <Form.Label style={{ width: '200px', marginTop: '16px' }}>
                   Manufacture
                 </Form.Label>
                 <input
@@ -207,12 +207,12 @@ function UpdateCarPage() {
                   type="text"
                   placeholder="Manufacture"
                   value={form.manufacture}
-                  onChange={(e) => handleInput(e, "manufacture")}
+                  onChange={(e) => handleInput(e, 'manufacture')}
                   required
                 />
               </Form.Group>
               <Form.Group className="mb-3 d-flex align-items-center">
-                <Form.Label style={{ width: "200px", marginTop: "16px" }}>
+                <Form.Label style={{ width: '200px', marginTop: '16px' }}>
                   Model
                 </Form.Label>
                 <input
@@ -220,12 +220,12 @@ function UpdateCarPage() {
                   type="text"
                   placeholder="Model"
                   value={form.model}
-                  onChange={(e) => handleInput(e, "model")}
+                  onChange={(e) => handleInput(e, 'model')}
                   required
                 />
               </Form.Group>
               <Form.Group className="mb-3 d-flex align-items-center">
-                <Form.Label style={{ width: "200px", marginTop: "16px" }}>
+                <Form.Label style={{ width: '200px', marginTop: '16px' }}>
                   Rent Per Day
                 </Form.Label>
                 <input
@@ -233,12 +233,12 @@ function UpdateCarPage() {
                   type="number"
                   placeholder="rent per day"
                   value={form.rentPerDay}
-                  onChange={(e) => handleInput(e, "rentPerDay")}
+                  onChange={(e) => handleInput(e, 'rentPerDay')}
                   required
                 />
               </Form.Group>
               <Form.Group className="mb-3 d-flex align-items-center">
-                <Form.Label style={{ width: "200px", marginTop: "16px" }}>
+                <Form.Label style={{ width: '200px', marginTop: '16px' }}>
                   Capacity
                 </Form.Label>
                 <input
@@ -246,19 +246,19 @@ function UpdateCarPage() {
                   type="number"
                   placeholder="capacity"
                   value={form.capacity}
-                  onChange={(e) => handleInput(e, "capacity")}
+                  onChange={(e) => handleInput(e, 'capacity')}
                   required
                 />
               </Form.Group>
               <Form.Group className="mb-3 d-flex align-items-center">
-                <Form.Label style={{ width: "200px", marginTop: "16px" }}>
+                <Form.Label style={{ width: '200px', marginTop: '16px' }}>
                   Description
                 </Form.Label>
                 <textarea
                   className="form-control mt-2"
                   placeholder="Description"
                   value={form.description}
-                  onChange={(e) => handleInput(e, "description")}
+                  onChange={(e) => handleInput(e, 'description')}
                   required
                 />
               </Form.Group>
@@ -275,14 +275,14 @@ function UpdateCarPage() {
                 />
               </Form.Group> */}
               <Form.Group className="mb-3 d-flex align-items-center">
-                <Form.Label style={{ width: "200px", marginTop: "16px" }}>
+                <Form.Label style={{ width: '200px', marginTop: '16px' }}>
                   Transmission
                 </Form.Label>
                 <select
                   className="form-select mt-2"
                   id="Available"
                   value={form.transmission}
-                  onChange={(e) => handleInput(e, "transmission")}
+                  onChange={(e) => handleInput(e, 'transmission')}
                   required
                 >
                   <option disabled value="default" hidden>
@@ -295,14 +295,14 @@ function UpdateCarPage() {
                 </select>
               </Form.Group>
               <Form.Group className="mb-3 d-flex align-items-center">
-                <Form.Label style={{ width: "200px", marginTop: "16px" }}>
+                <Form.Label style={{ width: '200px', marginTop: '16px' }}>
                   Available
                 </Form.Label>
                 <select
                   className="form-select mt-2"
                   id="Available"
-                  value={form.available ? "true" : "false"}
-                  onChange={(e) => handleInput(e, "available")}
+                  value={form.available ? 'true' : 'false'}
+                  onChange={(e) => handleInput(e, 'available')}
                   required
                 >
                   <option disabled value="default" hidden>
@@ -313,7 +313,7 @@ function UpdateCarPage() {
                 </select>
               </Form.Group>
               <Form.Group className="mb-3 d-flex align-items-center">
-                <Form.Label style={{ width: "200px", marginTop: "16px" }}>
+                <Form.Label style={{ width: '200px', marginTop: '16px' }}>
                   Type
                 </Form.Label>
                 <input
@@ -321,12 +321,12 @@ function UpdateCarPage() {
                   type="text"
                   placeholder="Type"
                   value={form.type}
-                  onChange={(e) => handleInput(e, "type")}
+                  onChange={(e) => handleInput(e, 'type')}
                   required
                 />
               </Form.Group>
               <Form.Group className="mb-3 d-flex align-items-center">
-                <Form.Label style={{ width: "200px", marginTop: "16px" }}>
+                <Form.Label style={{ width: '200px', marginTop: '16px' }}>
                   Year
                 </Form.Label>
                 <input
@@ -334,31 +334,31 @@ function UpdateCarPage() {
                   type="number"
                   placeholder="Year"
                   value={form.year}
-                  onChange={(e) => handleInput(e, "year")}
+                  onChange={(e) => handleInput(e, 'year')}
                   required
                 />
               </Form.Group>
               <Form.Group className="mb-3 d-flex align-items-center">
-                <Form.Label style={{ width: "200px", marginTop: "16px" }}>
+                <Form.Label style={{ width: '200px', marginTop: '16px' }}>
                   Options
                 </Form.Label>
                 <textarea
                   className="form-control mt-2"
                   placeholder="Options"
                   value={form.options}
-                  onChange={(e) => handleInput(e, "options")}
+                  onChange={(e) => handleInput(e, 'options')}
                   required
                 />
               </Form.Group>
               <Form.Group className="mb-3 d-flex align-items-center">
-                <Form.Label style={{ width: "200px", marginTop: "16px" }}>
+                <Form.Label style={{ width: '200px', marginTop: '16px' }}>
                   Specs
                 </Form.Label>
                 <textarea
                   className="form-control mt-2"
                   placeholder="Specs"
                   value={form.specs}
-                  onChange={(e) => handleInput(e, "specs")}
+                  onChange={(e) => handleInput(e, 'specs')}
                   required
                 />
               </Form.Group>

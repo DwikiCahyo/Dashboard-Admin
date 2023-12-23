@@ -1,7 +1,7 @@
-import assetComplete from "../assets/icon_1.svg";
-import assetPrice from "../assets/icon_price.svg";
-import assetProfesional from "../assets/icon_professional.svg";
-import assetTime from "../assets/icon_24hrs.svg";
+import assetComplete from '../assets/icon_1.svg';
+import assetPrice from '../assets/icon_price.svg';
+import assetProfesional from '../assets/icon_professional.svg';
+import assetTime from '../assets/icon_24hrs.svg';
 
 function Whyus() {
   return (

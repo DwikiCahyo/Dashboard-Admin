@@ -5,7 +5,7 @@ function Navbar() {
       <nav className="navbar navbar-expand-lg fixed-top">
         <div className="container">
           <a className="navbar-brand" href="#">
-            {" "}
+            {' '}
             Rent Car
           </a>
           <button

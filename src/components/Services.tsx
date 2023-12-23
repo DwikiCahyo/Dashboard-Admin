@@ -1,4 +1,4 @@
-import assetWoman from "../assets/img_service.svg";
+import assetWoman from '../assets/img_service.svg';
 
 function Services() {
   return (
@@ -24,7 +24,7 @@ function Services() {
                 kualitas pelayanan terbaik untuk perjalanan wisata, bisnis,
                 wedding, meeting, dll.
               </p>
-              <ul className="list-our" style={{ padding: "0" }}>
+              <ul className="list-our" style={{ padding: '0' }}>
                 <li className="item-list">
                   Sewa Mobil Dengan Supir di Bali 12 Jam
                 </li>

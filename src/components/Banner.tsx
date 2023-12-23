@@ -6,7 +6,7 @@ function Banner() {
           Sewa Mobil di (Lokasimu) Sekarang
         </h1>
         <div className="content-banner text-center mt-4">
-          <p style={{ color: "rgba(255, 255, 255, 0.589)" }}>
+          <p style={{ color: 'rgba(255, 255, 255, 0.589)' }}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>

@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useCarStore } from "../../store/carStore";
+import { useState } from 'react';
+import { useCarStore } from '../../store/carStore';
 
 interface JumpPageProps {
   totalPage: number;
@@ -17,7 +17,7 @@ function JumpPage({ totalPage }: JumpPageProps) {
         <option value={number} key={number}>
           {number}
         </option>
-      </>
+      </>,
     );
   }
 
@@ -32,7 +32,7 @@ function JumpPage({ totalPage }: JumpPageProps) {
         <select
           className="form-select "
           aria-label="page "
-          style={{ width: "auto" }}
+          style={{ width: 'auto' }}
           onChange={(e) => setOptValue(parseInt(e.target.value))}
         >
           {options}

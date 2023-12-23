@@ -1,22 +1,22 @@
-import { jwtDecode } from "jwt-decode";
-import { CustomJwtPayload, User } from "../types/types";
-import axios from "axios";
+import { jwtDecode } from 'jwt-decode';
+import { CustomJwtPayload, User } from '../types/types';
+import axios from 'axios';
 
-const baseURL = "https://car-rent-management-api.fly.dev/";
+const baseURL = 'https://car-rent-management-api.fly.dev/';
 
 export const apiInstance = axios.create({
   baseURL: baseURL,
 });
 
 export function convertDate(date?: Date) {
-  const formatedDate = date?.toString().split("T")[0];
+  const formatedDate = date?.toString().split('T')[0];
   return formatedDate;
 }
 
 export function formatToIDR(number: number) {
-  const formatter = new Intl.NumberFormat("id-ID", {
-    style: "currency",
-    currency: "IDR",
+  const formatter = new Intl.NumberFormat('id-ID', {
+    style: 'currency',
+    currency: 'IDR',
   });
 
   return formatter.format(number);

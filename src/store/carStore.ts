@@ -1,7 +1,7 @@
-import { create } from "zustand";
-import { Car, ResponseCar, Search, ValidationError } from "../types/types";
-import axios, { AxiosError } from "axios";
-import { apiInstance } from "../utils/utils";
+import { create } from 'zustand';
+import { Car, ResponseCar, Search, ValidationError } from '../types/types';
+import axios, { AxiosError } from 'axios';
+import { apiInstance } from '../utils/utils';
 
 interface CarState {
   cars: Car[];
@@ -25,7 +25,7 @@ interface CarState {
 export const useCarStore = create<CarState>()((set) => ({
   cars: [],
   car: null,
-  isAvailable: "",
+  isAvailable: '',
   pagesTotal: 0,
   page: 1,
   pageSize: 10,
@@ -33,7 +33,7 @@ export const useCarStore = create<CarState>()((set) => ({
   isSuccessPost: false,
   fetchCars: async (search?: Search) => {
     try {
-      const response = await apiInstance.get<ResponseCar>("cars", {
+      const response = await apiInstance.get<ResponseCar>('cars', {
         params: {
           available: search?.available,
           capacity: search?.passenger,
@@ -87,7 +87,7 @@ export const useCarStore = create<CarState>()((set) => ({
       const response = await apiInstance.delete(`cars/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      console.log("succsess delete", response.data.message);
+      console.log('succsess delete', response.data.message);
     } catch (error) {
       if (error instanceof AxiosError) {
         console.log(error.response?.data.message);

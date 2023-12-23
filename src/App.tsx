@@ -1,27 +1,27 @@
-import LandingPages from "./pages/LandingPages/LandingPages";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import SearchPage from "./pages/SearchPages/SearchPage";
-import AdminLayout from "./layout/AdminLayout";
-import DashboardPages from "./pages/AdminPages/Dashboard/DashboardPages";
-import CarLayout from "./layout/CarsLayout";
-import ListCarPage from "./pages/AdminPages/Cars/ListCarPage";
-import NewCar from "./pages/AdminPages/Cars/NewCarPage";
-import UpdateCarPage from "./pages/AdminPages/Cars/UpdateCarPage";
-import LoginPage from "./pages/AdminPages/Login/LoginPage";
+import LandingPages from './pages/LandingPages/LandingPages';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import SearchPage from './pages/SearchPages/SearchPage';
+import AdminLayout from './layout/AdminLayout';
+import DashboardPages from './pages/AdminPages/Dashboard/DashboardPages';
+import CarLayout from './layout/CarsLayout';
+import ListCarPage from './pages/AdminPages/Cars/ListCarPage';
+import NewCar from './pages/AdminPages/Cars/NewCarPage';
+import UpdateCarPage from './pages/AdminPages/Cars/UpdateCarPage';
+import LoginPage from './pages/AdminPages/Login/LoginPage';
 
 const router = createBrowserRouter([
-  { path: "/", element: <LandingPages /> },
-  { path: "search", element: <SearchPage /> },
+  { path: '/', element: <LandingPages /> },
+  { path: 'search', element: <SearchPage /> },
   {
-    path: "admin",
+    path: 'admin',
     element: <AdminLayout />,
     children: [
       {
-        path: "dashboard",
+        path: 'dashboard',
         element: <DashboardPages />,
       },
       {
-        path: "cars",
+        path: 'cars',
         element: <CarLayout />,
         children: [
           {
@@ -29,11 +29,11 @@ const router = createBrowserRouter([
             element: <ListCarPage />,
           },
           {
-            path: "newcar",
+            path: 'newcar',
             element: <NewCar />,
           },
           {
-            path: ":id",
+            path: ':id',
             element: <UpdateCarPage />,
           },
         ],
@@ -41,7 +41,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "login",
+    path: 'login',
     element: <LoginPage />,
   },
 ]);

@@ -1,9 +1,10 @@
-import { NavLink, Navigate, Outlet, useNavigate } from "react-router-dom";
-import "./styles.css";
-import { useAuthStore } from "../store/authStore";
-import { useEffect } from "react";
-import { User } from "../types/types";
-import { getRoleJwt } from "../utils/utils";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { NavLink, Navigate, Outlet, useNavigate } from 'react-router-dom';
+import './styles.css';
+import { useAuthStore } from '../store/authStore';
+import { useEffect } from 'react';
+import { User } from '../types/types';
+import { getRoleJwt } from '../utils/utils';
 
 function AdminLayout() {
   const token = useAuthStore((state) => state.token);
@@ -22,22 +23,22 @@ function AdminLayout() {
   }
 
   const user: User = {
-    email: payload?.email || "",
+    email: payload?.email || '',
     id: payload?.id || 0,
     role_id: payload?.role_id || 1,
   };
 
   useEffect(() => {
-    if (userInfo.email === "") {
+    if (userInfo.email === '') {
       setUserInfo(user);
     }
   }, [token]);
 
   function handleLogout() {
-    localStorage.removeItem("user");
+    localStorage.removeItem('user');
     setSuccess(false);
     removeToken();
-    navigate("/login");
+    navigate('/login');
   }
 
   return (

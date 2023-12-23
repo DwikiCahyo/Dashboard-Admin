@@ -1,4 +1,4 @@
-import { Breadcrumb } from "react-bootstrap";
+import { Breadcrumb } from 'react-bootstrap';
 
 interface Breadcrumbprops {
   location: string[];

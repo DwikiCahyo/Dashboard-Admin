@@ -1,4 +1,4 @@
-import { useCarStore } from "../../store/carStore";
+import { useCarStore } from '../../store/carStore';
 
 function LimitPage() {
   //TODO :Change more reusable
@@ -9,7 +9,7 @@ function LimitPage() {
     options.push(
       <>
         <option value={number * 10}>{number * 10}</option>
-      </>
+      </>,
     );
   }
 
@@ -19,7 +19,7 @@ function LimitPage() {
       <select
         className="form-select mt-1"
         aria-label="page "
-        style={{ width: "auto" }}
+        style={{ width: 'auto' }}
         onChange={(e) => setPageSize(parseInt(e.target.value))}
       >
         {options}

@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useCar } from "../context/cars/CarProvider";
+import { useState } from 'react';
+import { useCar } from '../context/cars/CarProvider';
 
 interface FormState {
   driver: string;
@@ -10,10 +10,10 @@ interface FormState {
 
 function SearchBar() {
   const [form, setForm] = useState<FormState>({
-    driver: "",
-    date: "",
-    time: "",
-    passenger: "",
+    driver: '',
+    date: '',
+    time: '',
+    passenger: '',
   });
 
   const { fetchCars, setUrlParams } = useCar();
@@ -21,13 +21,13 @@ function SearchBar() {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const { driver, date, time, passenger } = form;
-    fetchCars({ driver, date, time, passenger, isPaginate: "false" });
+    fetchCars({ driver, date, time, passenger, isPaginate: 'false' });
     setUrlParams({ date, passenger, time });
   }
 
   function handleInput(
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
-    field: keyof FormState
+    field: keyof FormState,
   ) {
     setForm({
       ...form,
@@ -36,29 +36,29 @@ function SearchBar() {
   }
 
   const parameter = new URLSearchParams(location.search);
-  const date = parameter.get("date") || "";
-  const capacity = parameter.get("capacity") || "";
-  const time = parameter.get("time") || "";
+  const date = parameter.get('date') || '';
+  const capacity = parameter.get('capacity') || '';
+  const time = parameter.get('time') || '';
 
   const dateValue = date || form.date;
   const capacityValue = capacity || form.passenger;
-  const timeValue = time || "default";
+  const timeValue = time || 'default';
 
   return (
-    <section id="search" style={{ position: "relative" }}>
+    <section id="search" style={{ position: 'relative' }}>
       <div className="container mt-3">
         <form action="" id="search-form" onSubmit={handleSubmit}>
           <div
             className="row row-cols-1 row-cols-sm-5 g-2 gx-sm-3 align-items-end  p-3 p-sm-4 rounded-2 shadow p-3 mb-5 bg-body rounded"
-            style={{ marginTop: "-60px", zIndex: "1" }}
+            style={{ marginTop: '-60px', zIndex: '1' }}
           >
             <div className="col">
               <label className="form-label">Tipe Driver</label>
               <select
                 className="form-select mt-2"
                 id="tipe-driver"
-                onChange={(e) => handleInput(e, "driver")}
-                defaultValue={"default"}
+                onChange={(e) => handleInput(e, 'driver')}
+                defaultValue={'default'}
                 required
               >
                 <option disabled value="default" hidden>
@@ -76,7 +76,7 @@ function SearchBar() {
                 type="date"
                 name="tanggal"
                 defaultValue={dateValue}
-                onChange={(e) => handleInput(e, "date")}
+                onChange={(e) => handleInput(e, 'date')}
                 required
               />
             </div>
@@ -85,7 +85,7 @@ function SearchBar() {
               <select
                 className="form-select mt-2"
                 id="waktuJemput"
-                onChange={(e) => handleInput(e, "time")}
+                onChange={(e) => handleInput(e, 'time')}
                 defaultValue={timeValue}
                 required
               >
@@ -107,7 +107,7 @@ function SearchBar() {
                 id="penumpang"
                 placeholder="4 Penumpang"
                 defaultValue={capacityValue}
-                onChange={(e) => handleInput(e, "passenger")}
+                onChange={(e) => handleInput(e, 'passenger')}
                 required
               />
             </div>

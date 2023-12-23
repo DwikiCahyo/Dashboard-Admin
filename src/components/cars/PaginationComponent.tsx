@@ -1,5 +1,5 @@
-import { Pagination } from "react-bootstrap";
-import { useCar } from "../../context/cars/CarProvider";
+import { Pagination } from 'react-bootstrap';
+import { useCar } from '../../context/cars/CarProvider';
 
 function PaginationComponent() {
   const { fetchCars, page, totalPages } = useCar();
@@ -18,7 +18,7 @@ function PaginationComponent() {
         onClick={() => handlePaginate(number)}
       >
         {number}
-      </Pagination.Item>
+      </Pagination.Item>,
     );
   }
   return (
