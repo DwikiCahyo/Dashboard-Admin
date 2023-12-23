@@ -4,7 +4,7 @@ import { useCar } from "../../context/cars/CarProvider";
 function PaginationComponent() {
   const { fetchCars, page, totalPages } = useCar();
 
-  let items = [];
+  const items = [];
 
   function handlePaginate(number: number) {
     fetchCars({ page: number });

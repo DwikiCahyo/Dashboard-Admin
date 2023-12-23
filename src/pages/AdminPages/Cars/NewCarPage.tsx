@@ -1,13 +1,15 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../../components/Admin/Breadcrumbs";
 import { Form, Alert } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import { ResponsePostCar } from "../../../types/types";
 import { useAuthStore } from "../../../store/authStore";
 import { useCarStore } from "../../../store/carStore";
 import Swal from "sweetalert2";
-import { toastNavigate } from "../../../utils/alert";
+import { apiInstance } from "../../../utils/utils";
 
 interface NewCarState {
   plate: string;
@@ -104,8 +106,8 @@ function NewCar() {
     console.log(form);
 
     try {
-      const response = await axios.post<ResponsePostCar>(
-        "http://localhost:3000/cars",
+      const response = await apiInstance.post<ResponsePostCar>(
+        "cars",
         {
           plate: plate,
           manufacture: manufacture,

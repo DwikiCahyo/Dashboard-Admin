@@ -2,7 +2,7 @@ import { useCarStore } from "../../store/carStore";
 
 function LimitPage() {
   //TODO :Change more reusable
-  let options = [];
+  const options = [];
   const setPageSize = useCarStore((state) => state.setPageSize);
 
   for (let number = 1; number <= 5; number++) {

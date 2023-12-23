@@ -7,7 +7,7 @@ interface PaginationAdmin {
 }
 
 function PaginationAdmin({ totalPages, page }: PaginationAdmin) {
-  let items = [];
+  const items = [];
   const setPage = useCarStore((state) => state.setPages);
 
   for (let number = 1; number <= totalPages; number++) {

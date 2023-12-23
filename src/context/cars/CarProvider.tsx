@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { Car, Search, SearchParams } from "../../types/types";
 import axios from "axios";
@@ -51,6 +52,7 @@ export function CarProvider({ children }: CarProviderProps) {
   const time = parameter.get("time") || "";
 
   async function fetchCars(search?: Search) {
+    // eslint-disable-next-line no-useless-catch
     try {
       const data = await axios.get("http://localhost:3000/cars", {
         params: {

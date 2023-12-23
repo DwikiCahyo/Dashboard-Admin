@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { Car, ResponseCar, Search, ValidationError } from "../types/types";
 import axios, { AxiosError } from "axios";
+import { apiInstance } from "../utils/utils";
 
 interface CarState {
   cars: Car[];
@@ -32,20 +33,17 @@ export const useCarStore = create<CarState>()((set) => ({
   isSuccessPost: false,
   fetchCars: async (search?: Search) => {
     try {
-      const response = await axios.get<ResponseCar>(
-        "http://localhost:3000/cars",
-        {
-          params: {
-            available: search?.available,
-            capacity: search?.passenger,
-            date: search?.date,
-            time: search?.time,
-            page: search?.page,
-            pageSize: search?.pageSize || 10,
-            isPaginate: search?.isPaginate,
-          },
-        }
-      );
+      const response = await apiInstance.get<ResponseCar>("cars", {
+        params: {
+          available: search?.available,
+          capacity: search?.passenger,
+          date: search?.date,
+          time: search?.time,
+          page: search?.page,
+          pageSize: search?.pageSize || 10,
+          isPaginate: search?.isPaginate,
+        },
+      });
       set(() => ({
         cars: response.data.data,
         pagesTotal: response.data.totalPages,
@@ -61,7 +59,7 @@ export const useCarStore = create<CarState>()((set) => ({
   },
   fetchCar: async (id: string | undefined, token: string) => {
     try {
-      const response = await axios.get(`http://localhost:3000/cars/${id}`, {
+      const response = await apiInstance.get(`cars/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       set(() => ({
@@ -86,10 +84,10 @@ export const useCarStore = create<CarState>()((set) => ({
 
   deleteCars: async (id: string, token: string) => {
     try {
-      const response = await axios.delete(`http://localhost:3000/cars/${id}`, {
+      const response = await apiInstance.delete(`cars/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      console.log("sukses delete", response.data.message);
+      console.log("succsess delete", response.data.message);
     } catch (error) {
       if (error instanceof AxiosError) {
         console.log(error.response?.data.message);

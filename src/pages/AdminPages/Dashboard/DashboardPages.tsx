@@ -12,11 +12,7 @@ import PaginationAdmin from "../../../components/Admin/PaginantionAdmin";
 import LimitPage from "../../../components/Admin/LimitPage";
 
 function AdminPages() {
-  const cars = useCarStore((state) => state.cars);
-  const fetchCars = useCarStore((state) => state.fetchCars);
-  const page = useCarStore((state) => state.page);
-  const totalPage = useCarStore((state) => state.pagesTotal);
-  const pageSize = useCarStore((state) => state.pageSize);
+  const { cars, fetchCars, page, pagesTotal, pageSize } = useCarStore();
 
   useEffect(() => {
     fetchCars({ page: page, pageSize: pageSize });
@@ -71,7 +67,7 @@ function AdminPages() {
           <h3 className="fw-semibold mt-4">Dashboard</h3>
           <div className="d-flex align-items-end justify-content-between mt-4">
             <Subtitle subtitle="List Cars" />
-            <PageCount page={page} totalPage={totalPage} />
+            <PageCount page={page} totalPage={pagesTotal} />
           </div>
           <div className="mt-4" id="table-car">
             <table className="table text-center">
@@ -83,9 +79,9 @@ function AdminPages() {
             <div className="d-flex align-items-center justify-content-between mt-4">
               <div className="d-inline-flex gap-3 ">
                 <LimitPage />
-                <JumpPage totalPage={totalPage} />
+                <JumpPage totalPage={pagesTotal} />
               </div>
-              <PaginationAdmin page={page} totalPages={totalPage} />
+              <PaginationAdmin page={page} totalPages={pagesTotal} />
             </div>
           </div>
         </div>

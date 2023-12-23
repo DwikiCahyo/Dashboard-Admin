@@ -1,5 +1,12 @@
 import { jwtDecode } from "jwt-decode";
 import { CustomJwtPayload, User } from "../types/types";
+import axios from "axios";
+
+const baseURL = "https://car-rent-management-api.fly.dev/";
+
+export const apiInstance = axios.create({
+  baseURL: baseURL,
+});
 
 export function convertDate(date?: Date) {
   const formatedDate = date?.toString().split("T")[0];

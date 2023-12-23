@@ -10,7 +10,7 @@ function JumpPage({ totalPage }: JumpPageProps) {
   const [optValue, setOptValue] = useState(1);
   const setPage = useCarStore((state) => state.setPages);
 
-  let options = [];
+  const options = [];
   for (let number = 1; number <= totalPage; number++) {
     options.push(
       <>

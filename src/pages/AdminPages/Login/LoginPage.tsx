@@ -6,14 +6,8 @@ import { useEffect } from "react";
 import Swal from "sweetalert2";
 
 function LoginPage() {
-  const isErrorr = useAuthStore((state) => state.isError);
-  const isSuccess = useAuthStore((state) => state.isSuccess);
-  const userInfo = useAuthStore((state) => state.userInfo);
-  const setLogin = useAuthStore((state) => state.setLogin);
-  const removeToken = useAuthStore((state) => state.removeToken);
-
+  const { isError, isSuccess, userInfo, removeToken } = useAuthStore();
   const role = userInfo.role_id;
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -54,11 +48,11 @@ function LoginPage() {
           <div style={{ padding: "300px 55px" }}>
             <h2 className="fw-bold text-primary mt-5">Car Rent</h2>
             <h2 className="fw-bold" style={{ marginTop: "32px" }}>
-              Welcome, Admin BCR
+              Welcome, Admin
             </h2>
-            {isErrorr && (
+            {isError && (
               <Alert variant="danger" className="mt-4">
-                <Alert.Heading>{isErrorr}</Alert.Heading>
+                <Alert.Heading>{isError}</Alert.Heading>
                 <p>
                   Masukkan username dan password yang benar. Perhatikan
                   penggunaan huruf kapital.

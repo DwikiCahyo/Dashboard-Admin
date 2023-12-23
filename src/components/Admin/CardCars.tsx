@@ -60,13 +60,11 @@ function CardCars({ cars }: CardCarsProps) {
         </div>
         <div className="d-flex gap-2 mt-4">
           <img src={assetClock} alt="icon-key" width={20} height={20} />
-          <p className="card-text">
-            {cars.updated_by ? (
-              <p>Updated by : {cars.updated_by}</p>
-            ) : (
-              <p style={{ color: "red" }}> Not Updated</p>
-            )}
-          </p>
+          {cars.updated_by ? (
+            <p>Updated by : {cars.updated_by}</p>
+          ) : (
+            <p style={{ color: "red" }}> Not Updated</p>
+          )}
         </div>
         <div className="row mt-4">
           <div className="col-12 col-md-6">

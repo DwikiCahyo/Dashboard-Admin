@@ -1,29 +1,23 @@
 import { Form } from "react-bootstrap";
 import { useState } from "react";
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import { useAuthStore } from "../../store/authStore";
 import { ResponseUser, User } from "../../types/types";
-import { getRoleJwt } from "../../utils/utils";
+import { apiInstance, getRoleJwt } from "../../utils/utils";
 
 function FormLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const setToken = useAuthStore((state) => state.setToken);
-  const setSuccess = useAuthStore((state) => state.setSuccess);
-  const setError = useAuthStore((state) => state.setError);
-  const setLogin = useAuthStore((state) => state.setLogin);
-  const setUserInfo = useAuthStore((state) => state.setUserInfo);
+  const { setToken, setSuccess, setError, setLogin, setUserInfo } =
+    useAuthStore();
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
     try {
-      const response = await axios.post<ResponseUser>(
-        "http://localhost:3000/login",
-        {
-          email,
-          password,
-        }
-      );
+      const response = await apiInstance.post<ResponseUser>("login", {
+        email,
+        password,
+      });
       const role = getRoleJwt(response.data.data.token);
       const user: User = {
         email: response.data.data.email,

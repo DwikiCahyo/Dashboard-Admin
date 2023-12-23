@@ -4,9 +4,10 @@ import { Form } from "react-bootstrap";
 import { useCarStore } from "../../../store/carStore";
 import { useEffect, useState } from "react";
 import { useAuthStore } from "../../../store/authStore";
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import { Alert } from "react-bootstrap";
 import Swal from "sweetalert2";
+import { apiInstance } from "../../../utils/utils";
 
 interface UpdateCarState {
   plate: string;
@@ -126,8 +127,8 @@ function UpdateCarPage() {
       specs,
     } = form;
     try {
-      const response = await axios.patch(
-        `http://localhost:3000/cars/${id} `,
+      const response = await apiInstance.patch(
+        `cars/${id} `,
         {
           plate: plate,
           manufacture: manufacture,

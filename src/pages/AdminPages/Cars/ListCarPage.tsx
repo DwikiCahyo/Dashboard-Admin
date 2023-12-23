@@ -6,19 +6,16 @@ import { useEffect } from "react";
 import FilterAvailable from "../../../components/Admin/FilterCarsAvailable";
 
 function ListCarPage() {
-  const cars = useCarStore((state) => state.cars);
-  const fetchCars = useCarStore((state) => state.fetchCars);
-  const isSuccesDelete = useCarStore((state) => state.isSuccessDelete);
-  const isSuccessPost = useCarStore((state) => state.isSuccessPost);
-  const isAvailable = useCarStore((state) => state.isAvailable);
+  const { cars, fetchCars, isSuccessDelete, isSuccessPost, isAvailable } =
+    useCarStore();
+
   const location = useLocation()
     .pathname.split("/")
     .filter((name) => name !== "");
 
   useEffect(() => {
     fetchCars({ isPaginate: "false", available: isAvailable });
-    console.log(cars);
-  }, [isSuccesDelete, isSuccessPost, isAvailable]);
+  }, [isSuccessDelete, isSuccessPost, isAvailable]);
 
   return (
     <div>
@@ -33,9 +30,9 @@ function ListCarPage() {
         <FilterAvailable />
         <div className="mt-4 ">
           <div className="row">
-            {cars.map((car) => (
+            {cars.map((car, index) => (
               <div className="col-12 col-md-4 mt-4">
-                <CardCars cars={car} />
+                <CardCars cars={car} key={index} />
               </div>
             ))}
           </div>

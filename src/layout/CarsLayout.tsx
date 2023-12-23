@@ -1,5 +1,5 @@
 import Sidebar from "../components/Admin/Sidebar";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 function CarLayout() {
   return (

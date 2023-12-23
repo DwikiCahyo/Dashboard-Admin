@@ -1,7 +1,7 @@
 import { NavLink, Navigate, Outlet, useNavigate } from "react-router-dom";
 import "./styles.css";
 import { useAuthStore } from "../store/authStore";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { User } from "../types/types";
 import { getRoleJwt } from "../utils/utils";
 
