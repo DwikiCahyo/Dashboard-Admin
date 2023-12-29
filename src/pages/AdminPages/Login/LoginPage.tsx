@@ -54,7 +54,7 @@ function LoginPage() {
               <Alert variant="danger" className="mt-4">
                 <Alert.Heading>{isError}</Alert.Heading>
                 <p>
-                  Masukkan username dan password yang benar. Perhatikan
+                  Masukkan username dan password dengan benar. Perhatikan
                   penggunaan huruf kapital.
                 </p>
               </Alert>
