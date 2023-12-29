@@ -1,4 +1,4 @@
-import { Form } from 'react-bootstrap';
+import { Alert, Form } from 'react-bootstrap';
 import { useState } from 'react';
 import { AxiosError } from 'axios';
 import { useAuthStore } from '../../store/authStore';
@@ -7,6 +7,7 @@ import { apiInstance, getRoleJwt } from '../../utils/utils';
 
 function FormLogin() {
   const [email, setEmail] = useState('');
+  const [isLoading, setIsLoading] = useState<boolean | null>(null);
   const [password, setPassword] = useState('');
   const { setToken, setSuccess, setError, setLogin, setUserInfo } =
     useAuthStore();
@@ -18,17 +19,21 @@ function FormLogin() {
         email,
         password,
       });
-      const role = getRoleJwt(response.data.data.token);
-      const user: User = {
-        email: response.data.data.email,
-        id: response.data.data.id,
-        role_id: role.role_id,
-      };
-      setUserInfo(user);
+      setIsLoading(true);
+      if (response.status === 200) {
+        setIsLoading(false);
+        const role = getRoleJwt(response.data.data.token);
+        const user: User = {
+          email: response.data.data.email,
+          id: response.data.data.id,
+          role_id: role.role_id,
+        };
+        setUserInfo(user);
 
-      setToken(response.data.data.token);
-      setLogin();
-      setSuccess(true);
+        setToken(response.data.data.token);
+        setLogin();
+        setSuccess(true);
+      }
     } catch (error) {
       if (error instanceof AxiosError) {
         console.log(error.response?.data.message);
@@ -39,6 +44,7 @@ function FormLogin() {
 
   return (
     <div style={{ marginTop: '32px' }}>
+      {isLoading && <Alert variant="light">Loading...</Alert>}
       <Form onSubmit={handleLogin}>
         <Form.Group className="mb-3" controlId="formGroupEmail">
           <Form.Label>Email address</Form.Label>

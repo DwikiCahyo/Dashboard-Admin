@@ -46,7 +46,7 @@ function LoginPage() {
         </div>
         <div className="col-5  ">
           <div style={{ padding: '300px 55px' }}>
-            <h2 className="fw-bold text-primary mt-5">Car Rent</h2>
+            <h2 className="fw-bold text-primary mt-3">Car Rent</h2>
             <h2 className="fw-bold" style={{ marginTop: '32px' }}>
               Welcome, Admin
             </h2>
