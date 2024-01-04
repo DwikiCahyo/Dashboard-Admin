@@ -89,6 +89,8 @@ function UpdateCarPage() {
 
   console.log(car);
 
+  console.log(form.transmission);
+
   useEffect(() => {
     if (!isLoading && isLoading !== null) {
       const Toast = Swal.mixin({

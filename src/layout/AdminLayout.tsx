@@ -12,11 +12,8 @@ function AdminLayout() {
   const setUserInfo = useAuthStore((state) => state.setUserInfo);
   const removeToken = useAuthStore((state) => state.removeToken);
   const navigate = useNavigate();
-  const isSuccess = useAuthStore((state) => state.isSuccess);
   const setSuccess = useAuthStore((state) => state.setSuccess);
   let payload;
-
-  console.log(isSuccess);
 
   if (token !== null) {
     payload = getRoleJwt(token);
@@ -63,6 +60,16 @@ function AdminLayout() {
               <p className="fw-bold">Cars</p>
             </div>
           </NavLink>
+          {userInfo.role_id === 1 && (
+            <NavLink
+              className="list-group-item list-group-item-action "
+              to="roles"
+            >
+              <div className="d-flex flex-column align-items-center p-3">
+                <p className="fw-bold">Roles</p>
+              </div>
+            </NavLink>
+          )}
         </div>
       </div>
       {/* <!-- Page content wrapper--> */}

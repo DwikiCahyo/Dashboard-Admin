@@ -20,20 +20,22 @@ function FormLogin() {
         password,
       });
       setIsLoading(true);
-      if (response.status === 200) {
-        setIsLoading(false);
-        const role = getRoleJwt(response.data.data.token);
-        const user: User = {
-          email: response.data.data.email,
-          id: response.data.data.id,
-          role_id: role.role_id,
-        };
-        setUserInfo(user);
+      setTimeout(() => {
+        if (response.status === 200) {
+          setIsLoading(false);
+          const role = getRoleJwt(response.data.data.token);
+          const user: User = {
+            email: response.data.data.email,
+            id: response.data.data.id,
+            role_id: role.role_id,
+          };
+          setUserInfo(user);
 
-        setToken(response.data.data.token);
-        setLogin();
-        setSuccess(true);
-      }
+          setToken(response.data.data.token);
+          setLogin();
+          setSuccess(true);
+        }
+      }, 2000);
     } catch (error) {
       if (error instanceof AxiosError) {
         console.log(error.response?.data.message);
@@ -44,7 +46,7 @@ function FormLogin() {
 
   return (
     <div style={{ marginTop: '32px' }}>
-      {isLoading && <Alert variant="light">Loading...</Alert>}
+      {isLoading && <Alert variant="info">Loading...</Alert>}
       <Form onSubmit={handleLogin}>
         <Form.Group className="mb-3" controlId="formGroupEmail">
           <Form.Label>Email address</Form.Label>

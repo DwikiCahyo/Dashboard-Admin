@@ -73,3 +73,9 @@ export interface CustomJwtPayload extends JwtPayload {
   role_id: number;
   id: number;
 }
+
+export interface UserData {
+  id: number;
+  email: string;
+  roles: string;
+}

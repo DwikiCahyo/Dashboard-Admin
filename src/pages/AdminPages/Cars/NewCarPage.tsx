@@ -34,6 +34,7 @@ function NewCar() {
   const token = useAuthStore((state) => state.token);
   const [file, setFile] = useState<File | undefined>();
   const [isLoading, setLoading] = useState<boolean | null>(null);
+  const [isError, setError] = useState<boolean>(false);
   const setSuccessPost = useCarStore((state) => state.setSuccessPost);
   const navigate = useNavigate();
 
@@ -86,7 +87,6 @@ function NewCar() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    console.log('Clicked');
     setLoading(true);
     const {
       plate,
@@ -103,7 +103,6 @@ function NewCar() {
       options,
       specs,
     } = form;
-    console.log(form);
 
     try {
       const response = await apiInstance.post<ResponsePostCar>(
@@ -131,7 +130,6 @@ function NewCar() {
           },
         },
       );
-      console.log(response);
 
       if (response.status === 200) {
         setLoading(false);
@@ -142,6 +140,7 @@ function NewCar() {
     } catch (error) {
       if (error instanceof AxiosError) {
         console.log(error.response?.data.message);
+        setError(true);
       }
     }
   }
@@ -159,6 +158,11 @@ function NewCar() {
         className=" bg-white mt-4"
         style={{ width: '100%', padding: '50px 50% 50px 50px' }}
       >
+        {isError && (
+          <Alert key="danger" variant="danger" className="mt-3">
+            Error while uploading data....
+          </Alert>
+        )}
         <Form onSubmit={handleSubmit} validated>
           <Form.Group className="mb-3 d-flex align-items-center">
             <Form.Label style={{ width: '200px', marginTop: '16px' }}>

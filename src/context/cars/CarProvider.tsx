@@ -72,8 +72,6 @@ export function CarProvider({ children }: CarProviderProps) {
       setCars(response);
       setTotalPage(totalPageResponse);
       setPage(page);
-
-      console.log(response);
     } catch (error) {
       throw error;
     }
@@ -81,7 +79,6 @@ export function CarProvider({ children }: CarProviderProps) {
 
   useEffect(() => {
     fetchCars();
-    console.log('fetching');
   }, []);
 
   const CarContextValue: CarContextProps = {

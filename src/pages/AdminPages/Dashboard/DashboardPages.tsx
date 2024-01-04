@@ -10,30 +10,30 @@ import PageCount from '../../../components/Admin/PageCount';
 import JumpPage from '../../../components/Admin/JumpPage';
 import PaginationAdmin from '../../../components/Admin/PaginantionAdmin';
 import LimitPage from '../../../components/Admin/LimitPage';
+import { configHeadCars, configHeadUser } from '../../../utils/utilsTable';
+import { useAuthStore } from '../../../store/authStore';
+import { useUserStore } from '../../../store/userStore';
 
 function AdminPages() {
   const { cars, fetchCars, page, pagesTotal, pageSize } = useCarStore();
+  const token = useAuthStore((state) => state.token);
+  const { fetchUser, users } = useUserStore();
 
   useEffect(() => {
     fetchCars({ page: page, pageSize: pageSize });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, pageSize]);
+
+  useEffect(() => {
+    if (token) fetchUser(token);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const location = useLocation()
     .pathname.split('/')
     .filter((name) => name !== '');
 
-  const configHeadCars = [
-    { label: 'No' },
-    { label: 'Name' },
-    { label: 'Type' },
-    { label: 'Price' },
-    { label: 'Date Available' },
-    { label: 'Time Available' },
-    { label: 'Capacity' },
-    { label: 'Updated by' },
-  ];
-
-  const renderedHeaders = configHeadCars.map((column) => {
+  const renderedHeadersCars = configHeadCars.map((column) => {
     return (
       <th scope="col" key={column.label}>
         {column.label}
@@ -41,7 +41,15 @@ function AdminPages() {
     );
   });
 
-  const renderedRows = cars.map((car, index) => {
+  const renderedHeadersUsers = configHeadUser.map((column) => {
+    return (
+      <th scope="col" key={column.label}>
+        {column.label}
+      </th>
+    );
+  });
+
+  const renderedRowsCars = cars.map((car, index) => {
     return (
       <tr key={car.id}>
         <th scope="row">{index + 1}</th>
@@ -56,6 +64,16 @@ function AdminPages() {
     );
   });
 
+  const renderedRowsUser = users.map((user) => {
+    return (
+      <tr key={user.id}>
+        <th scope="row">{user.id}</th>
+        <td>{user.email}</td>
+        <td>{user.roles}</td>
+      </tr>
+    );
+  });
+
   return (
     <div className="container-fluid ">
       <div className="row">
@@ -66,15 +84,15 @@ function AdminPages() {
           </div>
           <h3 className="fw-semibold mt-4">Dashboard</h3>
           <div className="d-flex align-items-end justify-content-between mt-4">
-            <Subtitle subtitle="List Cars" />
+            <Subtitle subtitle="List Car" />
             <PageCount page={page} totalPage={pagesTotal} />
           </div>
           <div className="mt-4" id="table-car">
             <table className="table text-center">
               <thead>
-                <tr className="table-primary">{renderedHeaders}</tr>
+                <tr className="table-primary">{renderedHeadersCars}</tr>
               </thead>
-              <tbody>{renderedRows}</tbody>
+              <tbody>{renderedRowsCars}</tbody>
             </table>
             <div className="d-flex align-items-center justify-content-between mt-4">
               <div className="d-inline-flex gap-3 ">
@@ -83,6 +101,17 @@ function AdminPages() {
               </div>
               <PaginationAdmin page={page} totalPages={pagesTotal} />
             </div>
+          </div>
+          <div className="d-flex align-items-end justify-content-between mt-4">
+            <Subtitle subtitle="List User" />
+          </div>
+          <div className="mt-4" id="table-car">
+            <table className="table text-start">
+              <thead>
+                <tr className="table-primary">{renderedHeadersUsers}</tr>
+              </thead>
+              <tbody>{renderedRowsUser}</tbody>
+            </table>
           </div>
         </div>
       </div>

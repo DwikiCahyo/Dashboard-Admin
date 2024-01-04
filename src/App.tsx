@@ -8,6 +8,7 @@ import ListCarPage from './pages/AdminPages/Cars/ListCarPage';
 import NewCar from './pages/AdminPages/Cars/NewCarPage';
 import UpdateCarPage from './pages/AdminPages/Cars/UpdateCarPage';
 import LoginPage from './pages/AdminPages/Login/LoginPage';
+import RolesPage from './pages/AdminPages/Roles/RolesPage';
 
 const router = createBrowserRouter([
   { path: '/', element: <LandingPages /> },
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
             element: <UpdateCarPage />,
           },
         ],
+      },
+      {
+        path: 'roles',
+        element: <RolesPage />,
       },
     ],
   },
