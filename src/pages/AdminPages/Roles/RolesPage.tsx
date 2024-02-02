@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import ModalUpdateRole from '../../../components/Admin/ModalUpdateRole';
 import { UserData } from '../../../types/types';
 
-export default function RolesPage() {
+function RolesPage() {
   const token = useAuthStore((state) => state.token);
   const { fetchUser, users } = useUserStore();
   const [userInfo, setUserInfo] = useState<UserData>({
@@ -16,15 +16,17 @@ export default function RolesPage() {
     roles: '',
     id: 0,
   });
-  const [modalShow, setModalShow] = useState<boolean>(false);
+  const { modal, setModal } = useUserStore();
 
   useEffect(() => {
     if (token) fetchUser(token);
+    console.log('bla');
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [modal]);
 
   function handleModal(user: UserData) {
-    setModalShow(true);
+    setModal(true);
     setUserInfo(user);
   }
 
@@ -36,11 +38,11 @@ export default function RolesPage() {
     );
   });
 
-  const renderedRowsUser = users.map((user) => {
+  const renderedRowsUser = users.map((user, index) => {
     return (
       <>
-        <tr key={user.id}>
-          <th scope="row">{user.id}</th>
+        <tr key={index}>
+          <th scope="row">{index + 1}</th>
           <td>{user.email}</td>
           <td>{user.roles}</td>
           <td>
@@ -76,8 +78,8 @@ export default function RolesPage() {
             <tbody>{renderedRowsUser}</tbody>
           </table>
           <ModalUpdateRole
-            show={modalShow}
-            onHide={() => setModalShow(false)}
+            show={modal}
+            onHide={() => setModal(false)}
             user={userInfo}
           />
         </div>
@@ -85,3 +87,5 @@ export default function RolesPage() {
     </div>
   );
 }
+
+export default RolesPage;

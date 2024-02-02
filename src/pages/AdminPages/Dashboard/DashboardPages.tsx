@@ -64,10 +64,10 @@ function AdminPages() {
     );
   });
 
-  const renderedRowsUser = users.map((user) => {
+  const renderedRowsUser = users.map((user, index) => {
     return (
-      <tr key={user.id}>
-        <th scope="row">{user.id}</th>
+      <tr key={index}>
+        <th scope="row">{index + 1}</th>
         <td>{user.email}</td>
         <td>{user.roles}</td>
       </tr>

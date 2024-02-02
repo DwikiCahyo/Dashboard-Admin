@@ -6,10 +6,13 @@ import { apiInstance } from '../utils/utils';
 interface UserState {
   fetchUser: (token: string) => void;
   users: UserData[];
+  modal: boolean;
+  setModal: (value: boolean) => void;
 }
 
 export const useUserStore = create<UserState>()((set) => ({
   users: [],
+  modal: false,
   fetchUser: async (token) => {
     try {
       const response = await apiInstance.get('users', {
@@ -28,5 +31,9 @@ export const useUserStore = create<UserState>()((set) => ({
         console.log(error.response?.data);
       }
     }
+  },
+
+  setModal: (value: boolean) => {
+    set(() => ({ modal: value }));
   },
 }));

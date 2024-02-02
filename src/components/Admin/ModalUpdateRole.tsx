@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
 import { UserData } from '../../types/types';
+import { useAuthStore } from '../../store/authStore';
+import { apiInstance } from '../../utils/utils';
+import { AxiosError } from 'axios';
+import { useUserStore } from '../../store/userStore';
 
 interface ModalUpdateRole {
   show: boolean;
@@ -11,6 +15,8 @@ interface ModalUpdateRole {
 export default function ModalUpdateRole(props: ModalUpdateRole) {
   const { user } = props;
   const [role, setRole] = useState(0);
+  const { token } = useAuthStore();
+  const { setModal } = useUserStore();
 
   function handleChangeRole(role: string) {
     console.log(role);
@@ -30,13 +36,31 @@ export default function ModalUpdateRole(props: ModalUpdateRole) {
     }
   }
 
-  function handleSubmit() {
-    console.log(role);
+  async function handleSubmit() {
+    try {
+      const response = await apiInstance.patch(
+        `users/${user.id}`,
+        { role_id: role },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      if (response.status === 200) {
+        setModal(false);
+      }
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        console.log(error.response?.data.message);
+      }
+    }
   }
 
   return (
     <Modal
-      {...props}
+      onHide={props.onHide}
+      show={props.show}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
